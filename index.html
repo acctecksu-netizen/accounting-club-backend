@@ -1346,7 +1346,7 @@ window.addEventListener('load', async () => {
     DBG.error('Phase 1 TIMEOUT: backend did not respond within 5s');
     _setLoaderMsg('تعذّر الاتصال بالخادم ⚠️', true);
     _addLoaderNote(
-      'الخادم لا يستجب على <code>localhost:5000</code><br>' +
+      'الخادم لا يستجب على <code>https://then-accouning-club-ksu.onrender.com</code><br>' +
       'تأكد من تشغيل <code>npm run dev</code> في مجلد المشروع'
     );
     _addLoaderBtn('🔄 إعادة المحاولة', () => location.reload());
@@ -1444,7 +1444,7 @@ function renderCourses(filter) {
     return `<div class="course-card" onclick="openCourse('${id}')">
       <div class="cc-thumb ${thumbClass}">
         ${c.thumbnail
-          ? `<img src="http://localhost:5000${escHtml(c.thumbnail)}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`
+          ? `<img src="http://https://then-accouning-club-ksu.onrender.com${escHtml(c.thumbnail)}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`
           : icon}
         <div class="cc-progress-bar"><div class="cc-progress-fill" style="width:${pct}%"></div></div>
       </div>
