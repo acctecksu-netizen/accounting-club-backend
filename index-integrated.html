@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نادي المحاسبة — جامعة الملك سعود</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#1a8f8f;--teal2:#22b5b5;--teal3:#2dcfcf;
+  --bg:#0d2b35;--bg2:#0a2230;--card:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.10);--text:#ffffff;--muted:rgba(255,255,255,0.55);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+.page-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(26,143,143,0.22) 0%,transparent 60%),
+  radial-gradient(ellipse 60% 50% at 100% 80%,rgba(26,143,143,0.10) 0%,transparent 55%),
+  linear-gradient(180deg,#0a2230 0%,#0d2b35 50%,#0a1e28 100%);}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:900;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:70px;background:rgba(10,34,48,0.80);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Amiri',serif;font-size:26px;font-weight:700;color:#fff;cursor:pointer;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;padding:8px 18px;border-radius:100px;transition:.25s;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,0.09);}
+
+/* PAGES */
+.page{display:none;position:relative;z-index:1;min-height:100vh;}
+.page.active{display:block;}
+
+/* ═══ HOME ═══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 60px;}
+.logo-brain{width:112px;height:112px;border-radius:50%;background:rgba(255,255,255,0.07);border:2px solid rgba(255,255,255,0.13);display:flex;align-items:center;justify-content:center;font-size:56px;margin:0 auto 10px;box-shadow:0 0 60px rgba(45,207,207,0.20);animation:glow 3s ease-in-out infinite;}
+@keyframes glow{0%,100%{box-shadow:0 0 40px rgba(45,207,207,0.18);}50%{box-shadow:0 0 80px rgba(45,207,207,0.38);}}
+.logo-name-main{font-family:'Amiri',serif;font-size:52px;font-weight:700;color:#fff;line-height:1;margin-bottom:4px;}
+.logo-tagline{font-size:14px;color:var(--muted);margin-bottom:36px;}
+.hero-title{font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;line-height:1.3;margin-bottom:14px;}
+.hero-title .hl{color:var(--teal3);}
+.hero-desc{font-size:15px;color:var(--muted);line-height:1.85;max-width:540px;margin:0 auto 36px;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-main{background:var(--teal2);color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;padding:13px 34px;border-radius:14px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.25s;box-shadow:0 4px 24px rgba(34,181,181,0.30);}
+.btn-main:hover{background:var(--teal3);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:#fff;font-family:'Cairo',sans-serif;font-weight:600;font-size:15px;padding:13px 34px;border-radius:14px;border:1.5px solid rgba(255,255,255,0.25);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.25s;}
+.btn-ghost:hover{border-color:var(--teal2);color:var(--teal3);}
+.wave-wrap{position:relative;margin-top:-2px;line-height:0;z-index:1;}
+.wave-wrap svg{width:100%;display:block;}
+.white-section{background:#fff;color:#0d2b35;padding:70px 5%;position:relative;z-index:1;}
+.ws-inner{max-width:1100px;margin:0 auto;}
+.ws-label{font-size:12px;font-weight:700;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.ws-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;margin-bottom:12px;color:#0d2b35;}
+.ws-sub{font-size:15px;color:#4a6070;line-height:1.8;max-width:560px;}
+/* [CHANGE 4] feat-grid adjusted to 3-column layout after removing 3 boxes */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.feat{background:linear-gradient(135deg,#f0f8ff,#e6f4f4);border-radius:16px;padding:26px;border:1px solid rgba(26,143,143,0.12);transition:.3s;}
+.feat:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(26,143,143,0.15);}
+.feat-ico{font-size:32px;margin-bottom:12px;}
+.feat-t{font-size:15px;font-weight:700;color:#0d2b35;margin-bottom:6px;}
+.feat-d{font-size:13px;color:#4a6070;line-height:1.7;}
+.stats-strip{background:var(--teal2);padding:44px 5%;position:relative;z-index:1;}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-box{text-align:center;padding:16px;}
+.stat-box .num{font-size:2.6rem;font-weight:900;color:#fff;font-family:'Amiri',serif;}
+.stat-box .lbl{font-size:14px;color:rgba(255,255,255,0.75);margin-top:4px;}
+.dark-sec{background:var(--bg2);padding:70px 5%;position:relative;z-index:1;overflow:hidden;}
+.dark-sec::before{content:'';position:absolute;top:-80px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(45,207,207,0.10),transparent 70%);pointer-events:none;}
+.info-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.info-t .ws-title{color:#fff;}.info-t .ws-sub{color:var(--muted);}
+.info-list{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+.info-item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.7;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--teal3);flex-shrink:0;margin-top:7px;}
+.info-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:30px;backdrop-filter:blur(10px);}
+.iv-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+.iv-row:last-child{border-bottom:none;}
+.iv-ico{font-size:22px;width:32px;text-align:center;}
+.iv-t{font-size:14px;font-weight:600;}.iv-s{font-size:12px;color:var(--muted);margin-top:2px;}
+.iv-badge{margin-right:auto;background:rgba(45,207,207,0.15);color:var(--teal3);border:1px solid rgba(45,207,207,0.25);font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;}
+footer{background:#081820;border-top:1px solid var(--border);padding:36px 5%;text-align:center;position:relative;z-index:1;}
+footer .fb{font-size:22px;font-family:'Amiri',serif;color:var(--teal3);margin-bottom:6px;}
+footer p{font-size:13px;color:var(--muted);}
+
+/* ═══ COURSES LIST ═══ */
+#courses{padding:100px 5% 80px;}
+.pg-header{max-width:1100px;margin:0 auto 40px;}
+.pg-label{font-size:12px;font-weight:700;color:var(--teal3);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.pg-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:10px;}
+.pg-sub{font-size:15px;color:var(--muted);line-height:1.8;}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
+.ftab{padding:8px 20px;border-radius:100px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
+.ftab.active,.ftab:hover{background:rgba(45,207,207,0.12);border-color:var(--teal2);color:var(--teal3);}
+.courses-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;}
+.course-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:.3s;backdrop-filter:blur(8px);}
+.course-card:hover{transform:translateY(-4px);border-color:rgba(45,207,207,0.35);box-shadow:0 12px 40px rgba(0,0,0,0.3);}
+.cc-thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;}
+.cc-thumb.th-acc{background:linear-gradient(135deg,#0d1e3a,#1a3060);}
+.cc-thumb.th-cost{background:linear-gradient(135deg,#0d2818,#1a4a2e);}
+.cc-thumb.th-aud{background:linear-gradient(135deg,#1a0d2a,#3a1a5a);}
+.cc-thumb.th-tax{background:linear-gradient(135deg,#1a1008,#3d2a06);}
+.cc-progress-bar{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,0.1);}
+.cc-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal3));transition:width .5s;}
+.cc-body{padding:20px;}
+.cc-cat{font-size:11px;font-weight:700;color:var(--teal3);letter-spacing:1px;margin-bottom:6px;}
+.cc-title{font-size:16px;font-weight:700;margin-bottom:6px;line-height:1.35;}
+.cc-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.cc-meta{display:flex;align-items:center;justify-content:space-between;}
+.cc-info{font-size:12px;color:var(--muted);}
+.cc-pct{font-size:13px;font-weight:700;color:var(--teal3);}
+.pill{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}
+.pill-ok{background:rgba(45,207,207,0.12);color:var(--teal3);border:1px solid rgba(45,207,207,0.22);}
+.pill-soon{background:rgba(255,180,50,0.12);color:#ffb432;border:1px solid rgba(255,180,50,0.22);}
+
+/* ═══ COURSE VIEW (chapters + videos) ═══ */
+#course-view{padding:80px 0 80px;}
+.cv-layout{max-width:1200px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start;}
+.cv-sidebar{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;position:sticky;top:88px;backdrop-filter:blur(8px);}
+.cvs-head{padding:20px;border-bottom:1px solid var(--border);}
+.cvs-course-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.cvs-meta{font-size:12px;color:var(--muted);}
+.cvs-prog{margin-top:12px;}
+.cvs-prog-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;}
+.cvs-prog-bar{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;}
+.cvs-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal3));border-radius:3px;transition:width .5s;}
+.chapters-list{max-height:calc(100vh - 260px);overflow-y:auto;}
+.chapters-list::-webkit-scrollbar{width:4px;}
+.chapters-list::-webkit-scrollbar-thumb{background:rgba(45,207,207,0.3);border-radius:2px;}
+.chapter-item{border-bottom:1px solid var(--border);}
+.chapter-head{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;transition:.2s;}
+.chapter-head:hover{background:rgba(255,255,255,0.04);}
+.ch-arrow{font-size:10px;color:var(--muted);transition:transform .2s;margin-right:auto;}
+.ch-arrow.open{transform:rotate(90deg);}
+.ch-num{width:24px;height:24px;border-radius:6px;background:rgba(45,207,207,0.15);color:var(--teal3);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ch-title{font-size:13px;font-weight:600;flex:1;}
+.ch-prog{font-size:11px;color:var(--muted);}
+.videos-list{display:none;background:rgba(0,0,0,0.15);}
+.videos-list.open{display:block;}
+.video-item{display:flex;align-items:center;gap:10px;padding:10px 18px 10px 28px;cursor:pointer;transition:.2s;border-bottom:1px solid rgba(255,255,255,0.04);}
+.video-item:last-child{border-bottom:none;}
+.video-item:hover{background:rgba(45,207,207,0.06);}
+.video-item.active{background:rgba(45,207,207,0.10);border-right:3px solid var(--teal3);}
+.video-item.watched .vi-check{color:var(--teal3);}
+.vi-check{font-size:14px;color:rgba(255,255,255,0.2);flex-shrink:0;width:18px;}
+.vi-ico{font-size:13px;color:var(--muted);flex-shrink:0;}
+.vi-title{font-size:13px;flex:1;line-height:1.35;}
+.vi-dur{font-size:11px;color:var(--muted);flex-shrink:0;}
+
+/* Main video area */
+.cv-main{}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:14px;cursor:pointer;margin-bottom:20px;padding-top:12px;transition:.2s;}
+.back-btn:hover{color:var(--teal3);}
+.video-player-wrap{background:#000;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;margin-bottom:20px;}
+.video-player-wrap video{width:100%;height:100%;display:block;}
+.video-player-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.no-video{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:12px;}
+.no-video .ico{font-size:48px;}
+.video-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;backdrop-filter:blur(8px);}
+.vi-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:16px;}
+.vi-title-main{font-size:18px;font-weight:700;line-height:1.3;}
+.watched-btn{background:rgba(45,207,207,0.12);border:1px solid rgba(45,207,207,0.25);color:var(--teal3);font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:.2s;flex-shrink:0;}
+.watched-btn:hover{background:rgba(45,207,207,0.22);}
+.watched-btn.done{background:rgba(45,207,207,0.20);color:#fff;}
+.vi-meta-row{display:flex;gap:16px;font-size:13px;color:var(--muted);}
+.vi-desc{font-size:14px;color:var(--muted);line-height:1.75;margin-top:14px;}
+.nav-btns{display:flex;gap:10px;margin-top:16px;}
+.nav-vid-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
+.nav-vid-btn:hover{border-color:var(--teal2);color:var(--teal3);}
+.nav-vid-btn:disabled{opacity:.3;cursor:not-allowed;}
+
+/* ═══ QUIZZES ═══ */
+#quizzes{padding:100px 5% 80px;}
+.quiz-grid{max-width:1100px;margin:40px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;cursor:pointer;transition:.3s;position:relative;overflow:hidden;backdrop-filter:blur(8px);}
+.q-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal3));transform:scaleX(0);transform-origin:right;transition:.3s;}
+.q-card:hover{transform:translateY(-4px);border-color:rgba(45,207,207,0.3);}
+.q-card:hover::after{transform:scaleX(1);transform-origin:left;}
+.qc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.qc-ico{font-size:30px;}
+.diff{padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;}
+.d-easy{background:rgba(45,207,207,0.12);color:var(--teal3);border:1px solid rgba(45,207,207,0.22);}
+.d-med{background:rgba(255,180,50,0.12);color:#ffb432;border:1px solid rgba(255,180,50,0.22);}
+.d-hard{background:rgba(231,76,60,0.12);color:#e74c3c;border:1px solid rgba(231,76,60,0.22);}
+.qc-t{font-size:16px;font-weight:700;margin-bottom:8px;}
+.qc-d{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.qc-meta{display:flex;gap:16px;font-size:12px;color:var(--muted);}
+.qc-footer{margin-top:18px;padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.start-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;padding:8px 22px;border-radius:10px;border:none;cursor:pointer;transition:.2s;}
+.start-btn:hover{transform:scale(1.04);}
+
+/* ═══ QUIZ MODAL ═══ */
+.overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.82);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px;}
+.overlay.show{display:flex;}
+
+/* [CHANGE 3] Two-column layout: quiz questions on the right (RTL = visual left), calculator on the left (visual right) */
+#quizOverlay { align-items: center; }
+
+/* Wrapper holds both panels side by side */
+.q-modal-wrap {
+  display: flex;
+  flex-direction: row;      /* RTL: questions appear right, calc appears left visually */
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+}
+
+/* Questions panel — takes remaining space */
+.q-modal {
+  background: #0d2b35;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 34px;
+  flex: 1;
+  min-width: 0;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Calculator sidebar — fixed width, sits beside questions */
+.calc-sidebar {
+  width: 236px;
+  flex-shrink: 0;
+  background: #0a1e28;
+  border: 1px solid rgba(45,207,207,0.22);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Small label above calculator */
+.calc-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.qm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.qm-ttl{font-size:17px;font-weight:700;}
+.close-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.close-btn:hover{background:rgba(231,76,60,.18);color:#e74c3c;}
+.prog-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px;}
+.prog-bar{height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin-bottom:22px;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal3));border-radius:2px;transition:width .4s;}
+.q-text{font-size:15px;font-weight:600;line-height:1.65;margin-bottom:18px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt-btn{padding:13px 16px;border-radius:10px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:'Cairo',sans-serif;font-size:14px;text-align:right;cursor:pointer;transition:.2s;}
+.opt-btn:hover{border-color:var(--teal2);background:rgba(34,181,181,0.07);}
+.opt-btn.correct{border-color:#2dcfcf;background:rgba(45,207,207,0.12);color:#2dcfcf;}
+.opt-btn.wrong{border-color:#e74c3c;background:rgba(231,76,60,0.12);color:#e74c3c;}
+.feedback{margin-top:14px;padding:14px;border-radius:10px;font-size:13px;line-height:1.65;}
+.feedback.ok{background:rgba(45,207,207,0.10);border:1px solid rgba(45,207,207,0.2);color:#2dcfcf;}
+.feedback.err{background:rgba(231,76,60,0.10);border:1px solid rgba(231,76,60,0.2);color:#e74c3c;}
+.next-btn{width:100%;margin-top:16px;padding:13px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;font-weight:700;font-size:15px;border-radius:10px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;display:none;}
+.next-btn.show{display:block;}
+.result-box{text-align:center;padding:24px 0;}
+.res-score{font-size:4.5rem;font-weight:900;color:var(--teal3);font-family:'Amiri',serif;}
+.res-label{font-size:15px;color:var(--muted);margin-bottom:14px;}
+.res-msg{font-size:15px;line-height:1.75;}
+
+/* ═══ ADMIN ═══ */
+#admin-page{padding:80px 0 80px;}
+.admin-wrap{max-width:1200px;margin:0 auto;padding:20px 5% 0;}
+.admin-lock{min-height:65vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.lock-ico{font-size:60px;margin-bottom:20px;}
+.lock-t{font-size:22px;font-weight:700;margin-bottom:8px;}
+.lock-s{font-size:14px;color:var(--muted);margin-bottom:28px;}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;width:100%;max-width:370px;backdrop-filter:blur(10px);}
+.fg{margin-bottom:16px;}
+.fl{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px;display:block;}
+.fi{width:100%;padding:11px 14px;border-radius:10px;background:rgba(255,255,255,0.06);border:1.5px solid var(--border);color:var(--text);font-family:'Cairo',sans-serif;font-size:14px;transition:.2s;}
+.fi:focus{outline:none;border-color:var(--teal2);background:rgba(45,207,207,0.05);}
+.fi-ta{width:100%;padding:11px 14px;border-radius:10px;background:rgba(255,255,255,0.06);border:1.5px solid var(--border);color:var(--text);font-family:'Cairo',sans-serif;font-size:14px;transition:.2s;resize:vertical;min-height:80px;}
+.fi-ta:focus{outline:none;border-color:var(--teal2);}
+select.fi{cursor:pointer;}
+.err-txt{color:#e74c3c;font-size:13px;margin-top:6px;display:none;}
+.admin-content{display:none;}
+.admin-content.on{display:block;}
+.admin-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+.admin-t{font-size:22px;font-weight:900;}
+.admin-user{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 16px;}
+.av{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;}
+.logout{background:transparent;border:1px solid rgba(231,76,60,.3);color:#e74c3c;padding:7px 16px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:13px;cursor:pointer;transition:.2s;}
+.logout:hover{background:rgba(231,76,60,.12);}
+.admin-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:28px;}
+.as-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;backdrop-filter:blur(8px);}
+.as-ico{font-size:24px;margin-bottom:8px;}
+.as-n{font-size:26px;font-weight:900;color:var(--teal3);}
+.as-l{font-size:13px;color:var(--muted);margin-top:2px;}
+
+/* Admin tabs */
+.admin-tabs{display:flex;gap:6px;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:0;}
+.atab{padding:10px 22px;border-radius:10px 10px 0 0;border:1px solid transparent;background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:.2s;margin-bottom:-1px;}
+.atab.active{background:var(--card);border-color:var(--border);border-bottom-color:var(--bg);color:#fff;}
+.atab:hover:not(.active){color:var(--teal3);}
+.admin-tab-content{display:none;}
+.admin-tab-content.on{display:block;}
+
+/* Course manager */
+.course-manager{display:grid;grid-template-columns:280px 1fr;gap:22px;}
+.course-list-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.clp-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.clp-head h3{font-size:14px;font-weight:700;}
+.add-btn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border-radius:8px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;}
+.course-list-items{max-height:500px;overflow-y:auto;}
+.cli-item{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px;}
+.cli-item:hover{background:rgba(255,255,255,0.04);}
+.cli-item.active{background:rgba(45,207,207,0.10);border-right:3px solid var(--teal3);}
+.cli-ico{font-size:20px;flex-shrink:0;}
+.cli-info{flex:1;min-width:0;}
+.cli-title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cli-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.cli-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px;opacity:0;transition:.2s;}
+.cli-item:hover .cli-del{opacity:1;}
+.cli-del:hover{color:#e74c3c;}
+
+.course-editor{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.ce-empty{text-align:center;padding:60px 20px;color:var(--muted);}
+.ce-empty .ce-ico{font-size:40px;margin-bottom:12px;}
+.section-title-sm{font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.chapter-manager{margin-top:20px;}
+.chapter-block{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;}
+.cb-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border);}
+.cb-num{width:26px;height:26px;border-radius:6px;background:rgba(45,207,207,0.15);color:var(--teal3);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cb-title{font-size:14px;font-weight:600;flex:1;}
+.cb-actions{display:flex;gap:6px;}
+.cb-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:7px;font-family:'Cairo',sans-serif;font-size:12px;cursor:pointer;transition:.2s;}
+.cb-btn:hover{border-color:var(--teal2);color:var(--teal3);}
+.cb-btn.danger:hover{border-color:#e74c3c;color:#e74c3c;}
+.videos-manager{padding:12px 16px;}
+.vm-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.03);margin-bottom:8px;border:1px solid rgba(255,255,255,0.05);}
+.vm-ico{font-size:18px;flex-shrink:0;}
+.vm-info{flex:1;min-width:0;}
+.vm-t{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.vm-s{font-size:11px;color:var(--muted);margin-top:2px;}
+.vm-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:4px 8px;transition:.2s;}
+.vm-del:hover{color:#e74c3c;}
+.add-video-btn{width:100%;padding:10px;border-radius:10px;border:1.5px dashed var(--border);background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;font-size:13px;cursor:pointer;transition:.2s;margin-top:6px;}
+.add-video-btn:hover{border-color:var(--teal2);color:var(--teal3);}
+
+/* Modal forms */
+.modal-form{background:#0d2b35;border:1px solid var(--border);border-radius:20px;padding:32px;max-width:500px;width:100%;}
+.modal-form.wide{max-width:600px;}
+.mf-title{font-size:17px;font-weight:700;margin-bottom:22px;}
+.mf-actions{display:flex;gap:12px;margin-top:20px;}
+.mf-cancel{flex:1;padding:11px;border-radius:10px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;font-size:14px;cursor:pointer;transition:.2s;}
+.mf-cancel:hover{border-color:var(--teal2);color:var(--teal3);}
+.mf-save{flex:1;padding:11px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.info-note{font-size:13px;color:var(--muted);background:rgba(45,207,207,0.07);padding:12px;border-radius:8px;border:1px solid var(--border);line-height:1.65;margin-top:4px;}
+.file-drop{border:2px dashed var(--border);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:.2s;position:relative;}
+.file-drop:hover{border-color:var(--teal2);background:rgba(45,207,207,0.04);}
+.file-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.fd-ico{font-size:28px;margin-bottom:8px;}
+.fd-txt{font-size:13px;color:var(--muted);}
+.fd-txt strong{color:var(--teal3);}
+.fd-selected{font-size:12px;color:var(--teal3);margin-top:8px;font-weight:600;}
+.url-toggle{display:flex;gap:8px;margin-bottom:12px;}
+.utbtn{flex:1;padding:8px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;font-size:13px;cursor:pointer;transition:.2s;}
+.utbtn.active{border-color:var(--teal2);background:rgba(45,207,207,0.10);color:var(--teal3);}
+
+/* Quiz admin */
+.quiz-admin-list{display:flex;flex-direction:column;gap:10px;}
+.qa-item{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;}
+.qa-ico{font-size:22px;flex-shrink:0;}
+.qa-info{flex:1;}
+.qa-t{font-size:14px;font-weight:600;}
+.qa-s{font-size:12px;color:var(--muted);margin-top:2px;}
+.qa-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:15px;padding:4px 8px;transition:.2s;}
+.qa-del:hover{color:#e74c3c;}
+
+/* ═══ [CHANGE 3] CALCULATOR SIDEBAR STYLES ═══ */
+.calc-screen {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: left;
+  margin-bottom: 10px;
+  min-height: 52px;
+}
+.calc-expr {
+  font-size: 11px;
+  color: var(--muted);
+  min-height: 14px;
+  word-break: break-all;
+  direction: ltr;
+}
+.calc-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal3);
+  line-height: 1.2;
+  direction: ltr;
+  word-break: break-all;
+}
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.ck {
+  padding: 10px 2px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .15s;
+  text-align: center;
+}
+.ck:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.2); }
+.ck.op { color: var(--teal3); background: rgba(45,207,207,0.08); border-color: rgba(45,207,207,0.20); }
+.ck.op:hover { background: rgba(45,207,207,0.18); }
+.ck.eq { background: linear-gradient(135deg,var(--teal),var(--teal2)); color: #fff; border-color: transparent; }
+.ck.eq:hover { background: linear-gradient(135deg,var(--teal2),var(--teal3)); }
+.ck.clr { color: #e74c3c; background: rgba(231,76,60,0.08); border-color: rgba(231,76,60,0.20); }
+.ck.clr:hover { background: rgba(231,76,60,0.18); }
+.ck.span2 { grid-column: span 2; }
+
+/* ── Responsive: on narrow screens stack calculator below questions ── */
+@media (max-width: 720px) {
+  .q-modal-wrap {
+    flex-direction: column;   /* stack vertically */
+    max-height: none;
+  }
+  .q-modal { max-height: none; }
+  .calc-sidebar {
+    width: 100%;              /* full width below questions */
+    max-height: none;
+  }
+}
+/* ═══ END CALCULATOR STYLES ═══ */
+/* ═══ COLLECTIONS PAGE ═══ */
+#collections{padding:100px 5% 80px;}
+.coll-header{max-width:1100px;margin:0 auto 40px;}
+.coll-search-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;align-items:center;}
+.coll-search{flex:1;min-width:200px;padding:10px 18px;border-radius:100px;border:1.5px solid var(--border);background:rgba(255,255,255,0.05);color:var(--text);font-family:'Cairo',sans-serif;font-size:14px;transition:.2s;}
+.coll-search:focus{outline:none;border-color:var(--teal2);background:rgba(45,207,207,0.05);}
+.coll-search::placeholder{color:var(--muted);}
+.coll-body{max-width:1100px;margin:0 auto;}
+.coll-subject{margin-bottom:48px;}
+.coll-subject-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.coll-subj-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.coll-subj-icon.th-acc{background:linear-gradient(135deg,#0d1e3a,#1a3060);}
+.coll-subj-icon.th-cost{background:linear-gradient(135deg,#0d2818,#1a4a2e);}
+.coll-subj-icon.th-aud{background:linear-gradient(135deg,#1a0d2a,#3a1a5a);}
+.coll-subj-icon.th-tax{background:linear-gradient(135deg,#1a1008,#3d2a06);}
+.coll-subj-icon.th-other{background:linear-gradient(135deg,#1a1525,#2d1f40);}
+.coll-subj-info{flex:1;}
+.coll-subj-name{font-size:18px;font-weight:700;}
+.coll-subj-count{font-size:13px;color:var(--muted);margin-top:3px;}
+.coll-items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.coll-item{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:.3s;backdrop-filter:blur(8px);}
+.coll-item:hover{transform:translateY(-4px);border-color:rgba(45,207,207,0.35);box-shadow:0 10px 32px rgba(0,0,0,0.3);}
+.coll-item-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;}
+.coll-item-thumb.type-pdf{background:linear-gradient(135deg,#1a0808,#3d1515);}
+.coll-item-thumb.type-image{background:linear-gradient(135deg,#08141a,#0d2435);}
+.coll-item-thumb.type-link{background:linear-gradient(135deg,#0d1a08,#1f3a10);}
+.coll-item-body{padding:14px;}
+.coll-item-type{font-size:10px;font-weight:700;color:var(--teal3);letter-spacing:1px;margin-bottom:5px;text-transform:uppercase;}
+.coll-item-title{font-size:13px;font-weight:700;line-height:1.35;margin-bottom:5px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.coll-item-meta{font-size:11px;color:var(--muted);}
+.coll-type-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;color:#fff;}
+.coll-empty{text-align:center;padding:80px 20px;color:var(--muted);}
+.coll-empty-ico{font-size:50px;margin-bottom:14px;}
+/* File preview overlay */
+.file-preview-overlay{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);align-items:center;justify-content:center;padding:20px;}
+.file-preview-overlay.show{display:flex;}
+.fp-modal{background:#0d2b35;border:1px solid var(--border);border-radius:20px;width:100%;max-width:860px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;}
+.fp-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.fp-title{flex:1;font-size:15px;font-weight:700;}
+.fp-subj{font-size:12px;color:var(--muted);margin-top:2px;}
+.fp-close{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
+.fp-close:hover{background:rgba(231,76,60,.18);color:#e74c3c;}
+.fp-body{flex:1;overflow:hidden;position:relative;}
+.fp-body iframe,.fp-body img{width:100%;height:100%;object-fit:contain;border:none;display:block;}
+.fp-body .fp-no-preview{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);gap:12px;}
+.fp-body .fp-no-preview .ico{font-size:52px;}
+.fp-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;}
+/* ═══ ADMIN COLLECTIONS ═══ */
+.coll-admin-panel{display:grid;grid-template-columns:280px 1fr;gap:22px;}
+.coll-subj-list{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.csa-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.csa-head h3{font-size:14px;font-weight:700;}
+.coll-subj-items{max-height:500px;overflow-y:auto;}
+.csi-item{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px;}
+.csi-item:hover{background:rgba(255,255,255,0.04);}
+.csi-item.active{background:rgba(45,207,207,0.10);border-right:3px solid var(--teal3);}
+.csi-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px;opacity:0;transition:.2s;}
+.csi-item:hover .csi-del{opacity:1;}
+.csi-del:hover{color:#e74c3c;}
+.coll-files-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.cfp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.coll-file-list{display:flex;flex-direction:column;gap:10px;}
+.cfi-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);}
+.cfi-ico{font-size:22px;flex-shrink:0;}
+.cfi-info{flex:1;min-width:0;}
+.cfi-title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cfi-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.cfi-del{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:4px 8px;transition:.2s;}
+.cfi-del:hover{color:#e74c3c;}
+/* [CHANGE 4] feat-grid responsive: 3 items now, collapse to 1 col on mobile */
+@media(max-width:700px){.feat-grid{grid-template-columns:1fr;}.info-grid{grid-template-columns:1fr;}.admin-stats{grid-template-columns:repeat(3,1fr);}.stats-inner{grid-template-columns:1fr 1fr;}.nav-links a{padding:8px 10px;font-size:12px;}.coll-admin-panel{grid-template-columns:1fr;}.coll-items-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}}
+@media(max-width:500px){.feat-grid{grid-template-columns:1fr;}.admin-stats{grid-template-columns:1fr 1fr;}.nav-links a[data-hide]{display:none;}}
+</style>
+</head>
+<body>
+<div class="page-bg"></div>
+
+<nav>
+  <div class="nav-brand" onclick="goPage('home',null)">نادي المحاسبة</div>
+  <div class="nav-links">
+    <a onclick="goPage('home',this)" class="active">الرئيسية</a>
+    <a onclick="goPage('courses',this)">الشروحات</a>
+    <a onclick="goPage('collections',this)">التجميعات</a>
+    <a onclick="goPage('quizzes',this)">الاختبارات</a>
+  </div>
+</nav>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="home" class="page active">
+  <section class="hero">
+    <div class="logo-brain">🧠</div>
+    <!-- [CHANGE 1] Platform name updated from "ذهن" to "منصة ذهن" -->
+    <div class="logo-name-main">منصة ذهن</div>
+    <div class="logo-tagline">حيث يبدأ التفكير الذكي — منصة نادي المحاسبة · جامعة الملك سعود</div>
+    <h1 class="hero-title">المنصة التعليمية لـ<span class="hl">نادي المحاسبة</span><br>جامعة الملك سعود</h1>
+    <!-- [CHANGE 2] Updated hero description text (small paragraph only, main h1 is unchanged) -->
+    <p class="hero-desc">نسخة تجريبية (Beta) – نعمل على تطوير المنصة وتحسينها تدريجيًا لتقديم تجربة أفضل.</p>
+    <div class="hero-btns">
+      <a class="btn-main" onclick="goPage('courses',null)">ابدأ الآن</a>
+      <a class="btn-ghost" onclick="goPage('quizzes',null)">اختبر نفسك</a>
+    </div>
+  </section>
+  <div class="wave-wrap"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/></svg></div>
+  <div class="white-section">
+    <div class="ws-inner">
+      <div class="ws-label">ما يميّزنا</div>
+      <div class="ws-title">كل ما تحتاجه في مكان واحد</div>
+      <p class="ws-sub">صُمّمت خصيصاً لطلاب المحاسبة في جامعة الملك سعود لتوفير تجربة تعلّم سلسة وفعّالة.</p>
+      <!-- [CHANGE 4] Removed three feature boxes: "محتوى أكاديمي دقيق", "تحديثات مستمرة", "متوافق مع الجوال" -->
+      <div class="feat-grid">
+        <div class="feat"><div class="feat-ico">🎬</div><div class="feat-t">مقاطع فيديو منظّمة</div><div class="feat-d">مقاطع مرتّبة في فصول داخل كل مادة لتتعلّم بتسلسل منطقي.</div></div>
+        <div class="feat"><div class="feat-ico">📊</div><div class="feat-t">تتبّع نسبة الإنجاز</div><div class="feat-d">احسب نسبة إنجازك في كل مادة وفصل لمعرفة ما أتممته وما تبقّى.</div></div>
+        <div class="feat"><div class="feat-ico">✏️</div><div class="feat-t">اختبارات تفاعلية</div><div class="feat-d">اختبارات قصيرة مع تصحيح فوري وشرح لكل إجابة.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-box"><div class="num" id="hStat1">0</div><div class="lbl">مقطع متاح</div></div>
+      <div class="stat-box"><div class="num" id="hStat2">0</div><div class="lbl">فصل دراسي</div></div>
+      <div class="stat-box"><div class="num" id="hStat3">0</div><div class="lbl">مادة</div></div>
+      <div class="stat-box"><div class="num">+500</div><div class="lbl">طالب مستفيد</div></div>
+    </div>
+  </div>
+  <div class="dark-sec">
+    <div class="info-grid">
+      <div class="info-t">
+        <!-- [CHANGE 1] Platform name updated from "ذهن" to "منصة ذهن" -->
+        <div class="ws-label">لماذا منصة ذهن؟</div>
+        <div class="ws-title" style="color:#fff">منصة مبنية على احتياجاتك</div>
+        <p class="ws-sub" style="color:var(--muted)">بُنيت بناءً على احتياجات طلاب نادي المحاسبة الفعلية.</p>
+        <div class="info-list">
+          <div class="info-item"><div class="dot"></div><span>شروحات مقسّمة على فصول منظّمة</span></div>
+          <div class="info-item"><div class="dot"></div><span>تتبّع تقدّمك الأكاديمي تلقائياً</span></div>
+          <div class="info-item"><div class="dot"></div><span>جميع أنواع الملفات مدعومة (فيديو, PDF, روابط)</span></div>
+          <div class="info-item"><div class="dot"></div><span>تحديثات مستمرة من مشرفي النادي</span></div>
+        </div>
+      </div>
+      <div class="info-card" id="homeCoursesPreview"></div>
+    </div>
+  </div>
+  <!-- [CHANGE 1] Platform name updated in footer from "ذهن" to "منصة ذهن" -->
+  <footer><div class="fb">منصة ذهن × نادي المحاسبة</div><p>جامعة الملك سعود — © 2025 جميع الحقوق محفوظة</p></footer>
+</div>
+
+<!-- ══════════ COURSES ══════════ -->
+<div id="courses" class="page">
+  <section id="courses-inner" style="padding:100px 5% 80px;">
+    <div class="pg-header">
+      <div class="pg-label">المحتوى التعليمي</div>
+      <div class="pg-title">الشروحات الدراسية</div>
+      <p class="pg-sub">اختر مادة لتتصفّح فصولها ومقاطعها</p>
+      <div class="filter-row" id="catFilter"></div>
+    </div>
+    <div class="courses-grid" id="coursesGrid"></div>
+  </section>
+</div>
+
+<!-- ══════════ COURSE VIEW ══════════ -->
+<div id="course-view" class="page">
+  <div class="cv-layout">
+    <div class="cv-sidebar">
+      <div class="cvs-head">
+        <div class="cvs-course-title" id="cvCourseName"></div>
+        <div class="cvs-meta" id="cvCourseMeta"></div>
+        <div class="cvs-prog">
+          <div class="cvs-prog-label"><span>نسبة الإنجاز</span><span id="cvProgPct">0%</span></div>
+          <div class="cvs-prog-bar"><div class="cvs-prog-fill" id="cvProgFill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="chapters-list" id="chaptersList"></div>
+    </div>
+    <div class="cv-main">
+      <div class="back-btn" onclick="goPage('courses',null)">← العودة للمواد</div>
+      <div class="video-player-wrap" id="videoPlayerWrap">
+        <div class="no-video"><div class="ico">🎬</div><div>اختر مقطعاً من القائمة</div></div>
+      </div>
+      <div class="video-info" id="videoInfo" style="display:none">
+        <div class="vi-head">
+          <div class="vi-title-main" id="viTitle"></div>
+          <button class="watched-btn" id="watchedBtn" onclick="toggleWatched()">✓ اضغط عند الانتهاء</button>
+        </div>
+        <div class="vi-meta-row">
+          <span id="viChapter"></span>
+          <span id="viDur"></span>
+          <span id="viType"></span>
+        </div>
+        <div class="vi-desc" id="viDesc"></div>
+        <div class="nav-btns">
+          <button class="nav-vid-btn" id="prevVidBtn" onclick="navigateVideo(-1)">← السابق</button>
+          <button class="nav-vid-btn" id="nextVidBtn" onclick="navigateVideo(1)">التالي →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ QUIZZES ══════════ -->
+<div id="quizzes" class="page">
+  <section style="padding:100px 5% 80px;">
+    <div style="max-width:1100px;margin:0 auto">
+      <div class="pg-label">التقييم الذاتي</div>
+      <div class="pg-title">الاختبارات القصيرة</div>
+      <p class="pg-sub">اختبر معلوماتك وتحقّق من فهمك للمفاهيم المحاسبية</p>
+    </div>
+    <div class="quiz-grid" id="quizGrid"></div>
+  </section>
+</div>
+
+<!-- ══════════ COLLECTIONS ══════════ -->
+<div id="collections" class="page">
+  <section style="padding:100px 5% 80px;">
+    <div class="coll-header">
+      <div class="pg-label">المواد الدراسية</div>
+      <div class="pg-title">التجميعات</div>
+      <p class="pg-sub">ملفات PDF والصور الخاصة بشروحات المقررات — مرتّبة حسب المادة</p>
+      <div class="coll-search-row">
+        <input class="coll-search" id="collSearch" type="text" placeholder="🔍 ابحث عن ملف أو مقرر..." oninput="renderCollections()">
+        <div class="filter-row" id="collFilter" style="margin-top:0;gap:6px;"></div>
+      </div>
+    </div>
+    <div class="coll-body" id="collBody"></div>
+  </section>
+</div>
+
+<!-- File preview overlay -->
+<div class="file-preview-overlay" id="filePreviewOverlay">
+  <div class="fp-modal">
+    <div class="fp-header">
+      <div>
+        <div class="fp-title" id="fpTitle"></div>
+        <div class="fp-subj" id="fpSubj"></div>
+      </div>
+      <button class="fp-close" onclick="closeFilePreview()">✕</button>
+    </div>
+    <div class="fp-body" id="fpBody" style="min-height:400px;"></div>
+    <div class="fp-footer">
+      <a id="fpDownload" target="_blank" class="btn-main" style="font-size:13px;padding:9px 22px;text-decoration:none">فتح / تنزيل ↗</a>
+    </div>
+  </div>
+</div>
+
+
+<div id="admin-page" class="page">
+  <div class="admin-wrap">
+    <div class="admin-lock" id="adminLock">
+      <div class="lock-ico">🔐</div>
+      <div class="lock-t">لوحة تحكم المشرفين</div>
+      <div class="lock-s">هذه الصفحة مخصصة للمشرفين فقط</div>
+      <div class="login-box">
+        <div class="fg"><label class="fl">البريد الإلكتروني</label><input class="fi" id="lu" type="email" placeholder="admin@example.com" autocomplete="email"></div>
+        <div class="fg"><label class="fl">كلمة المرور</label><input class="fi" id="lp" type="password" placeholder="كلمة المرور" autocomplete="current-password"><div class="err-txt" id="lerr">❌ بيانات الدخول غير صحيحة</div></div>
+        <button class="btn-main" style="width:100%;justify-content:center" id="loginBtn" onclick="doLogin()">تسجيل الدخول</button>
+      </div>
+    </div>
+    <div class="admin-content" id="adminContent">
+      <div class="admin-bar">
+        <div class="admin-t">🎛️ لوحة التحكم</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="admin-user"><div class="av">م</div><span style="font-size:14px;font-weight:600">مشرف النادي</span></div>
+          <button class="logout" onclick="doLogout()">خروج</button>
+        </div>
+      </div>
+      <div class="admin-stats">
+        <div class="as-card"><div class="as-ico">📚</div><div class="as-n" id="aStat1">0</div><div class="as-l">مادة</div></div>
+        <div class="as-card"><div class="as-ico">📑</div><div class="as-n" id="aStat2">0</div><div class="as-l">فصل</div></div>
+        <div class="as-card"><div class="as-ico">🎬</div><div class="as-n" id="aStat3">0</div><div class="as-l">مقطع</div></div>
+        <div class="as-card"><div class="as-ico">📂</div><div class="as-n" id="aStat5">0</div><div class="as-l">تجميعات</div></div>
+        <div class="as-card"><div class="as-ico">✏️</div><div class="as-n" id="aStat4">0</div><div class="as-l">اختبار</div></div>
+      </div>
+      <div class="admin-tabs">
+        <button class="atab active" onclick="switchAdminTab('courses-tab',this)">📚 المواد والشروحات</button>
+        <button class="atab" onclick="switchAdminTab('collections-tab',this)">📂 التجميعات</button>
+        <button class="atab" onclick="switchAdminTab('quizzes-tab',this)">✏️ الاختبارات</button>
+      </div>
+      <!-- Courses tab -->
+      <div class="admin-tab-content on" id="courses-tab">
+        <div class="course-manager">
+          <div class="course-list-panel">
+            <div class="clp-head"><h3>المواد الدراسية</h3><button class="add-btn" onclick="openCourseModal()">+ مادة</button></div>
+            <div class="course-list-items" id="adminCourseList"></div>
+          </div>
+          <div class="course-editor" id="courseEditor"><div class="ce-empty"><div class="ce-ico">👈</div><div>اختر مادة لإدارة فصولها ومقاطعها</div></div></div>
+        </div>
+      </div>
+      <!-- Collections tab -->
+      <div class="admin-tab-content" id="collections-tab">
+        <div class="coll-admin-panel">
+          <div class="coll-subj-list">
+            <div class="csa-head"><h3>المقررات</h3><button class="add-btn" onclick="openCollSubjectModal()">+ مقرر</button></div>
+            <div class="coll-subj-items" id="adminCollSubjList"></div>
+          </div>
+          <div class="coll-files-panel" id="collFilesPanel">
+            <div class="ce-empty"><div class="ce-ico">👈</div><div>اختر مقرراً لإدارة ملفاته</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Quizzes tab -->
+      <div class="admin-tab-content" id="quizzes-tab">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+          <button class="add-btn" onclick="openQuizModal()">+ اختبار جديد</button>
+        </div>
+        <div class="quiz-admin-list" id="adminQuizList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quiz modal — [CHANGE 3] Two-column layout: questions + calculator side by side -->
+<div class="overlay" id="quizOverlay">
+  <div class="q-modal-wrap">
+
+    <!-- ── Questions panel (flex: 1, takes most space) ── -->
+    <div class="q-modal">
+      <div class="qm-top"><div class="qm-ttl" id="qTitle"></div><button class="close-btn" onclick="closeQuiz()">✕</button></div>
+      <div class="prog-row"><span id="qProg"></span><span id="qSc">النقاط: 0</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="qBar" style="width:0%"></div></div>
+      <div id="qBody"></div>
+    </div>
+
+    <!-- ── Calculator sidebar (fixed 236px, right column in RTL = visual left) ── -->
+    <div class="calc-sidebar">
+      <div class="calc-label">🧮 حاسبة</div>
+      <div class="calc-screen">
+        <div class="calc-expr" id="calcExpr"></div>
+        <div class="calc-val" id="calcVal">0</div>
+      </div>
+      <div class="calc-grid">
+        <!-- Row 1 -->
+        <button class="ck clr span2" onclick="calcAction('AC')">AC</button>
+        <button class="ck op" onclick="calcAction('back')">⌫</button>
+        <button class="ck op" onclick="calcAction('op','÷')">÷</button>
+        <!-- Row 2 -->
+        <button class="ck" onclick="calcAction('num','7')">7</button>
+        <button class="ck" onclick="calcAction('num','8')">8</button>
+        <button class="ck" onclick="calcAction('num','9')">9</button>
+        <button class="ck op" onclick="calcAction('op','×')">×</button>
+        <!-- Row 3 -->
+        <button class="ck" onclick="calcAction('num','4')">4</button>
+        <button class="ck" onclick="calcAction('num','5')">5</button>
+        <button class="ck" onclick="calcAction('num','6')">6</button>
+        <button class="ck op" onclick="calcAction('op','−')">−</button>
+        <!-- Row 4 -->
+        <button class="ck" onclick="calcAction('num','1')">1</button>
+        <button class="ck" onclick="calcAction('num','2')">2</button>
+        <button class="ck" onclick="calcAction('num','3')">3</button>
+        <button class="ck op" onclick="calcAction('op','+')">+</button>
+        <!-- Row 5 -->
+        <button class="ck span2" onclick="calcAction('num','0')">0</button>
+        <button class="ck" onclick="calcAction('dot')">.</button>
+        <button class="ck eq" onclick="calcAction('eq')">=</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Generic modal -->
+<div class="overlay" id="genericOverlay">
+  <div id="genericModalContent"></div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   KSU ACCOUNTING CLUB — Backend Integration Layer
+   Replaces Supabase with Node.js/Express + MongoDB backend
+   All API calls go through the API object below.
+══════════════════════════════════════════════════════════════ */
+
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const API_BASE = 'http://127.0.0.1:5000/api';
+// ─── XSS PREVENTION UTILITY ──────────────────────────────────────────────────
+// Escape HTML before inserting any user-supplied text into the DOM.
+// Always use escHtml() when rendering data fetched from the server.
+function escHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   API CLIENT
+   Handles CSRF tokens, credentials, and error normalisation.
+══════════════════════════════════════════════════════════════ */
+/* ─── DEBUG LOGGER — filter [KSU] in DevTools F12 console ─── */
+const DBG = {
+  log:   (...a) => console.log(  '%c[KSU]', 'color:#2dcfcf;font-weight:bold', ...a),
+  warn:  (...a) => console.warn( '%c[KSU]', 'color:#ffb432;font-weight:bold', ...a),
+  error: (...a) => console.error('%c[KSU]', 'color:#e74c3c;font-weight:bold', ...a),
+};
+
+const API = (() => {
+  let _csrf = null;
+  let _csrfInflight = null; // deduplicate concurrent CSRF requests
+
+  // Lazy CSRF — only fetched before POST/PUT/DELETE, NEVER at startup
+  async function refreshCsrf() {
+    if (_csrfInflight) return _csrfInflight;
+    _csrfInflight = (async () => {
+      try {
+        DBG.log('Fetching CSRF token...');
+        const r = await _raw('GET', '/auth/csrf', null, false, 4000);
+        _csrf = r && r.data && r.data.csrfToken ? r.data.csrfToken : null;
+        DBG.log('CSRF token:', _csrf ? '✓ received' : '✗ null');
+      } catch(e) {
+        DBG.warn('CSRF fetch error (non-fatal):', e.message);
+        _csrf = null;
+      } finally { _csrfInflight = null; }
+      return _csrf;
+    })();
+    return _csrfInflight;
+  }
+
+  // Core fetch: AbortController timeout + structured error (never throws to caller)
+  async function _raw(method, path, body, withCsrf, timeoutMs) {
+    timeoutMs = timeoutMs || 8000;
+    const url = API_BASE + path;
+    const ctrl = new AbortController();
+    const timer = setTimeout(function() { ctrl.abort(); }, timeoutMs);
+    const hdrs = { 'Content-Type': 'application/json' };
+    if (withCsrf && _csrf) hdrs['CSRF-Token'] = _csrf;
+    const opts = { method: method, credentials: 'include', headers: hdrs, signal: ctrl.signal };
+    if (body) opts.body = JSON.stringify(body);
+    DBG.log('→ ' + method + ' ' + path);
+    try {
+      const res = await fetch(url, opts);
+      clearTimeout(timer);
+      const json = await res.json().catch(function() { return { success: false, message: 'Bad JSON response' }; });
+      DBG.log('← ' + res.status + ' ' + path, res.ok ? '✓' : ('✗ ' + (json.message || '')));
+      return Object.assign({ ok: res.ok, status: res.status }, json);
+    } catch(err) {
+      clearTimeout(timer);
+      if (err.name === 'AbortError') {
+        DBG.error('TIMEOUT (' + timeoutMs + 'ms): ' + method + ' ' + path);
+        return { ok: false, status: 0, message: 'Timeout — الخادم لم يستجب خلال ' + (timeoutMs/1000) + 's. تأكد من تشغيل npm run dev' };
+      }
+      DBG.error('NETWORK ERROR ' + method + ' ' + path + ':', err.message);
+      return { ok: false, status: 0, message: 'خطأ في الشبكة: ' + err.message };
+    }
+  }
+
+  // GET — no CSRF, safe to call at startup without circular dependency
+  function get(path, timeoutMs) {
+    return _raw('GET', path, null, false, timeoutMs || 8000);
+  }
+
+  // POST/PUT/DELETE — lazy CSRF, auto-retry once on token expiry
+  async function mutate(method, path, body, retry) {
+    retry = retry !== false;
+    if (!_csrf) await refreshCsrf();
+    const res = await _raw(method, path, body, true);
+    if (res.status === 403 && retry && (res.message || '').toLowerCase().includes('csrf')) {
+      DBG.warn('CSRF mismatch — refreshing token and retrying...');
+      _csrf = null;
+      await refreshCsrf();
+      return _raw(method, path, body, true);
+    }
+    return res;
+  }
+
+  // Multipart file upload (thumbnails, etc.)
+  async function upload(method, path, formData) {
+    if (!_csrf) await refreshCsrf();
+    const ctrl = new AbortController();
+    const timer = setTimeout(function() { ctrl.abort(); }, 30000);
+    try {
+      DBG.log('→ UPLOAD ' + method + ' ' + path);
+      const res = await fetch(API_BASE + path, {
+        method: method, credentials: 'include',
+        headers: { 'CSRF-Token': _csrf || '' },
+        body: formData, signal: ctrl.signal
+      });
+      clearTimeout(timer);
+      const json = await res.json().catch(function() { return { success: false }; });
+      DBG.log('← UPLOAD ' + res.status + ' ' + path, res.ok ? '✓' : '✗');
+      return Object.assign({ ok: res.ok, status: res.status }, json);
+    } catch(err) {
+      clearTimeout(timer);
+      DBG.error('Upload error:', err.message);
+      return { ok: false, status: 0, message: err.message };
+    }
+  }
+
+  return {
+    get:    function(p, t)    { return get(p, t); },
+    post:   function(p, b)    { return mutate('POST',   p, b); },
+    put:    function(p, b)    { return mutate('PUT',    p, b); },
+    delete: function(p)       { return mutate('DELETE', p); },
+    upload: function(m, p, f) { return upload(m, p, f); },
+    refreshCsrf: refreshCsrf,
+  };
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   APPLICATION STATE
+══════════════════════════════════════════════════════════════ */
+let COURSES       = []; // courses from backend
+let QUIZZES       = []; // quizzes from backend
+let COLL_SUBJECTS = []; // (kept local — collections not in backend scope)
+let COLL_FILES    = []; // (kept local)
+
+// Auth state
+let currentUser  = null; // { id, name, email, role } or null
+let isAdmin      = false;
+
+// Course viewer state
+let curCourse     = null;
+let curVideo      = null;
+let curChapterIdx = 0;
+let curVideoIdx   = 0;
+
+// Progress state (keyed by courseId → { videoId: true })
+let PROGRESS = {};
+
+// Quiz state
+let curQuiz  = null;
+let curQ     = 0;
+let curScore = 0;
+let answered = false;
+// Quiz answers accumulator (for backend submission)
+let quizAnswers = [];
+
+// Admin state
+let selectedCourse   = null;
+let selectedCollSubj = null;
+let addVideoMode     = 'url';
+let pendingFileData  = '';
+let pendingCollFileData = '';
+let qBlockCount = 0;
+
+/* ══════════════════════════════════════════════════════════════
+   TOAST NOTIFICATION
+══════════════════════════════════════════════════════════════ */
+function _showSaveToast(msg, isErr) {
+  let t = document.getElementById('_saveToast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = '_saveToast';
+    t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:9999;padding:12px 28px;border-radius:12px;font-family:Cairo,sans-serif;font-size:14px;font-weight:700;transition:opacity .4s;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,0.3)';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.background = isErr ? 'rgba(231,76,60,0.95)' : 'rgba(45,207,207,0.95)';
+  t.style.color = '#fff'; t.style.opacity = '1';
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.style.opacity = '0'; }, 3000);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   AUTH — Login / Logout / Session Check
+══════════════════════════════════════════════════════════════ */
+
+// Check session — 3s timeout, never throws, non-blocking
+async function checkAuth() {
+  try {
+    DBG.log('checkAuth: calling /auth/me…');
+    const res = await API.get('/auth/me', 3000); // short timeout
+    if (res.ok && res.data) {
+      currentUser = res.data;
+      isAdmin = currentUser.role === 'admin';
+      DBG.log('checkAuth: logged in as', currentUser.email, '| role:', currentUser.role);
+    } else {
+      DBG.log('checkAuth: not logged in (status:', res.status, ')');
+      currentUser = null; isAdmin = false;
+    }
+  } catch(e) {
+    DBG.warn('checkAuth error (non-fatal):', e.message);
+    currentUser = null; isAdmin = false;
+  }
+}
+
+// Update nav / admin button visibility based on auth state
+function _applyAuthUI() {
+  // Show/hide admin nav button
+  let adminLink = document.getElementById('navAdminLink');
+  if (!adminLink) {
+    // Dynamically inject admin nav link if admin
+    adminLink = document.createElement('a');
+    adminLink.id = 'navAdminLink';
+    adminLink.onclick = function() { goPage('admin-page', this); };
+    adminLink.textContent = '⚙️ الإدارة';
+    document.querySelector('.nav-links').appendChild(adminLink);
+  }
+  adminLink.style.display = isAdmin ? '' : 'none';
+
+  // Update admin dashboard header user display
+  const adminUserEl = document.querySelector('.admin-user span');
+  if (adminUserEl && currentUser) {
+    adminUserEl.textContent = escHtml(currentUser.name || currentUser.email);
+  }
+  const avEl = document.querySelector('.av');
+  if (avEl && currentUser?.name) {
+    avEl.textContent = currentUser.name.charAt(0);
+  }
+}
+
+// Admin login form handler
+async function doLogin() {
+  const email    = document.getElementById('lu').value.trim();
+  const password = document.getElementById('lp').value;
+  const errEl    = document.getElementById('lerr');
+  const btnEl    = document.getElementById('loginBtn');
+
+  errEl.style.display = 'none';
+
+  if (!email || !password) {
+    errEl.textContent = '❌ يرجى إدخال البريد الإلكتروني وكلمة المرور';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  // Disable button during request
+  btnEl.disabled = true;
+  btnEl.textContent = 'جارٍ تسجيل الدخول...';
+
+  // Fetch CSRF token first (required before POST)
+  await API.refreshCsrf();
+
+  const res = await API.post('/auth/login', { email, password });
+
+  btnEl.disabled = false;
+  btnEl.textContent = 'تسجيل الدخول';
+
+  if (res.ok && res.data) {
+    currentUser = res.data;
+    isAdmin     = currentUser.role === 'admin';
+    _applyAuthUI();
+
+    if (!isAdmin) {
+      // Logged in but not admin
+      errEl.textContent = '❌ هذا الحساب ليس حساب مشرف';
+      errEl.style.display = 'block';
+      await API.post('/auth/logout', {});
+      currentUser = null; isAdmin = false;
+      return;
+    }
+
+    renderAdmin();
+    _showSaveToast('✅ تم تسجيل الدخول بنجاح');
+  } else {
+    DBG.warn('doLogin failed — status:', res.status, '| msg:', res.message);
+    let msg = res.message || 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+    if (res.status === 0)   msg = 'تعذّر الاتصال بالخادم — تأكد من تشغيل npm run dev';
+    if (res.status === 429) msg = 'محاولات كثيرة — انتظر 15 دقيقة ثم حاول مجدداً';
+    if (res.status === 423) msg = res.message || 'الحساب مقفل مؤقتاً — حاول لاحقاً';
+    errEl.textContent = '❌ ' + escHtml(msg);
+    errEl.style.display = 'block';
+  }
+}
+
+async function doLogout() {
+  await API.post('/auth/logout', {});
+  currentUser = null;
+  isAdmin     = false;
+  _applyAuthUI();
+  document.getElementById('adminLock').style.display    = 'flex';
+  document.getElementById('adminContent').classList.remove('on');
+  document.getElementById('lu').value = '';
+  document.getElementById('lp').value = '';
+  document.getElementById('lerr').style.display = 'none';
+  _showSaveToast('👋 تم تسجيل الخروج');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PROGRESS — Backend-backed per user
+══════════════════════════════════════════════════════════════ */
+
+// Load progress for a course from backend (requires auth)
+async function loadProgress(courseId) {
+  if (!currentUser) return;
+  try {
+    DBG.log('loadProgress:', courseId);
+    const res = await API.get(`/progress/${courseId}`);
+    if (res.ok && res.data) {
+      PROGRESS[courseId] = {};
+      (res.data.watchedVideos || []).forEach(id => { PROGRESS[courseId][String(id)] = true; });
+      DBG.log('loadProgress: watched videos:', Object.keys(PROGRESS[courseId]).length);
+    }
+  } catch(e) { DBG.warn('loadProgress error (non-fatal):', e.message); }
+}
+
+function getProgress(courseId) {
+  const course = COURSES.find(c => (c._id || c.id) === courseId);
+  if (!course) return { watched: 0, total: 0, pct: 0 };
+  const total   = (course.chapters || []).reduce((s, ch) => s + (ch.videos || []).length, 0);
+  const watched = Object.keys(PROGRESS[courseId] || {}).length;
+  return { watched, total, pct: total > 0 ? Math.round(watched / total * 100) : 0 };
+}
+
+function isWatched(courseId, videoId) {
+  return !!(PROGRESS[courseId] || {})[videoId];
+}
+
+async function markWatched(courseId, videoId, val) {
+  if (!PROGRESS[courseId]) PROGRESS[courseId] = {};
+  if (val) PROGRESS[courseId][videoId] = true;
+  else delete PROGRESS[courseId][videoId];
+
+  // Sync to backend if logged in
+  if (currentUser) {
+    await API.refreshCsrf();
+    await API.post(`/progress/${courseId}`, {
+      videoId,
+      action: val ? 'watch' : 'unwatch'
+    });
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DATA LOADING — fetch courses and quizzes from backend
+══════════════════════════════════════════════════════════════ */
+
+async function loadCourses() {
+  try {
+    DBG.log('loadCourses: calling /courses…');
+    const res = await API.get('/courses?limit=50&sort=-createdAt');
+    if (res.ok && Array.isArray(res.data)) {
+      COURSES = res.data;
+      DBG.log('loadCourses: loaded', COURSES.length, 'courses');
+      return true;
+    }
+    DBG.warn('loadCourses unexpected response:', res.status, res.message);
+    return false;
+  } catch(e) {
+    DBG.error('loadCourses error:', e.message);
+    return false;
+  }
+}
+
+async function loadQuizzes() {
+  try {
+    DBG.log('loadQuizzes: calling /quizzes…');
+    const res = await API.get('/quizzes?limit=50');
+    if (res.ok && Array.isArray(res.data)) {
+      QUIZZES = res.data;
+      DBG.log('loadQuizzes: loaded', QUIZZES.length, 'quizzes');
+      return true;
+    }
+    DBG.warn('loadQuizzes unexpected response:', res.status, res.message);
+    return false;
+  } catch(e) {
+    DBG.error('loadQuizzes error:', e.message);
+    return false;
+  }
+}
+
+// Load collections from localStorage (not in backend scope yet)
+function _loadLocalCollections() {
+  try {
+    const cs = localStorage.getItem('zkCollSubjects');
+    const cf = localStorage.getItem('zkCollFiles');
+    if (cs) COLL_SUBJECTS = JSON.parse(cs);
+    if (cf) COLL_FILES    = JSON.parse(cf);
+  } catch(e) {}
+}
+
+function _saveLocalCollections() {
+  try {
+    localStorage.setItem('zkCollSubjects', JSON.stringify(COLL_SUBJECTS));
+    localStorage.setItem('zkCollFiles',    JSON.stringify(COLL_FILES));
+  } catch(e) {}
+}
+
+/* Compatibility shim — kept for collections code that calls save() */
+async function save(k, v) {
+  if (k === 'zkCollSubjects') { COLL_SUBJECTS = v; _saveLocalCollections(); }
+  if (k === 'zkCollFiles')    { COLL_FILES    = v; _saveLocalCollections(); }
+}
+
+// Helper to normalise course id from either _id or id
+function cid(course) { return course._id || course.id || ''; }
+function qid(quiz)   { return quiz._id   || quiz.id   || ''; }
+
+/* ══════════════════════════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════════════════════════ */
+function goPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const hashMap = {
+    'home': '#/', 'courses': '#/courses',
+    'course-view': '#/course/' + cid(curCourse || {}),
+    'collections': '#/collections', 'quizzes': '#/quizzes', 'admin-page': '#/admin'
+  };
+  if (hashMap[id]) history.replaceState(null, '', hashMap[id]);
+
+  if (id === 'home')        renderHome();
+  if (id === 'courses')     renderCourses();
+  if (id === 'collections') renderCollections();
+  if (id === 'quizzes')     renderQuizzes();
+  if (id === 'admin-page')  renderAdmin();
+}
+
+function parseAndNavigate() {
+  const hash = location.hash || '#/';
+  if (hash.startsWith('#/course/')) {
+    const cId = hash.replace('#/course/', '');
+    if (cId) { openCourse(cId); return; }
+  }
+  const pageMap = { '#/courses': 'courses', '#/collections': 'collections', '#/quizzes': 'quizzes', '#/admin': 'admin-page' };
+  const page = pageMap[hash] || 'home';
+  const navMap = { 'courses': 1, 'collections': 2, 'quizzes': 3 };
+  const navLinks = document.querySelectorAll('.nav-links a');
+  if (navMap[page] !== undefined) navLinks[navMap[page]].classList.add('active');
+  else navLinks[0].classList.add('active');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  if (page === 'home')        renderHome();
+  if (page === 'courses')     renderCourses();
+  if (page === 'collections') renderCollections();
+  if (page === 'quizzes')     renderQuizzes();
+  if (page === 'admin-page')  renderAdmin();
+}
+
+function _refreshCurrentPage() {
+  const active = document.querySelector('.page.active');
+  if (!active) return;
+  const id = active.id;
+  if      (id === 'home')        renderHome();
+  else if (id === 'courses')     renderCourses();
+  else if (id === 'quizzes')     renderQuizzes();
+  else if (id === 'collections') renderCollections();
+  else if (id === 'course-view' && curCourse) {
+    updateCourseProgress();
+    renderChaptersList();
+    setTimeout(() => {
+      const a = document.getElementById(`vi-${curChapterIdx}-${curVideoIdx}`);
+      if (a) a.classList.add('active');
+    }, 10);
+  }
+}
+
+window.addEventListener('hashchange', parseAndNavigate);
+
+/* ══════════════════════════════════════════════════════════════
+   INIT — runs on page load
+══════════════════════════════════════════════════════════════ */
+/* ─── LOADING SCREEN HELPERS ─── */
+function _setLoaderMsg(msg, isErr) {
+  const el = document.getElementById('_loaderMsg');
+  if (el) { el.textContent = msg; el.style.color = isErr ? '#e74c3c' : 'rgba(255,255,255,0.55)'; }
+}
+function _addLoaderBtn(label, onClick) {
+  const b = document.createElement('button');
+  b.textContent = label;
+  b.style.cssText = 'margin-top:16px;padding:12px 32px;border-radius:12px;background:rgba(45,207,207,0.9);color:#fff;border:none;font-family:Cairo,sans-serif;font-size:15px;font-weight:700;cursor:pointer';
+  b.onclick = onClick;
+  document.getElementById('initLoader')?.appendChild(b);
+}
+function _addLoaderNote(html) {
+  const d = document.createElement('div');
+  d.style.cssText = 'margin-top:10px;font-size:12px;color:rgba(255,255,255,0.38);text-align:center;max-width:300px;line-height:1.7';
+  d.innerHTML = html;
+  document.getElementById('initLoader')?.appendChild(d);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INIT — FIXED WINDOW.LOAD
+   Root causes of the "stuck on loading" bug:
+   1. Promise.all — one failure blocked everything indefinitely
+   2. No timeout — network error = infinite hang
+   3. CSRF fetched inside checkAuth path triggered before GETs
+   4. No error boundaries — any throw left loader on screen
+
+   Fixes applied:
+   ✓ Promise.allSettled — each request is independent
+   ✓ Hard 5-second race timeout via Promise.race
+   ✓ Loader always removed (finally-style logic)
+   ✓ CSRF never fetched at startup (only lazy before POST/PUT/DELETE)
+   ✓ checkAuth uses a separate 3s timeout, runs after public data
+   ✓ Retry button + offline message shown if backend unreachable
+══════════════════════════════════════════════════════════════ */
+window.addEventListener('load', async () => {
+  DBG.log('=== App initialising ===');
+
+  // Inject loader with a labelled message span
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="initLoader" style="position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px">
+      <div style="font-size:48px;animation:glow 1.5s ease-in-out infinite">🧠</div>
+      <div style="font-family:'Amiri',serif;font-size:22px;color:var(--teal3)">منصة ذهن</div>
+      <div id="_loaderMsg" style="font-size:14px;color:rgba(255,255,255,0.55)">جارٍ الاتصال بالخادم…</div>
+    </div>`);
+
+  // ── Phase 1: load public data (GET, no CSRF, no auth) ────────
+  // These two run in parallel. allSettled means one failure won't
+  // block the other, and won't block the entire init sequence.
+  DBG.log('Phase 1: fetching courses + quizzes…');
+  _setLoaderMsg('جارٍ تحميل المحتوى…');
+
+  const dataPromise   = Promise.allSettled([ loadCourses(), loadQuizzes() ]);
+  const timeoutPromise = new Promise(r => setTimeout(() => r('__TIMEOUT__'), 5000));
+  const winner = await Promise.race([ dataPromise, timeoutPromise ]);
+
+  if (winner === '__TIMEOUT__') {
+    // Backend unreachable — show error, still dismiss loader and render empty UI
+    DBG.error('Phase 1 TIMEOUT: backend did not respond within 5s');
+    _setLoaderMsg('تعذّر الاتصال بالخادم ⚠️', true);
+    _addLoaderNote(
+      'الخادم لا يستجب على <code>localhost:5000</code><br>' +
+      'تأكد من تشغيل <code>npm run dev</code> في مجلد المشروع'
+    );
+    _addLoaderBtn('🔄 إعادة المحاولة', () => location.reload());
+    await new Promise(r => setTimeout(r, 1500)); // give user 1.5s to read the message
+  } else {
+    DBG.log('Phase 1 done — courses:', COURSES.length, '| quizzes:', QUIZZES.length);
+  }
+
+  // ── Phase 2: auth check (short 3s timeout, never blocks UI) ──
+  // Runs AFTER public data so the page always shows even if auth fails.
+  _setLoaderMsg('التحقق من الجلسة…');
+  DBG.log('Phase 2: checking auth (3s timeout)…');
+  await checkAuth();
+
+  // ── Phase 3: local collections (synchronous) ─────────────────
+  _loadLocalCollections();
+
+  // ── Phase 4: dismiss loader and navigate — ALWAYS runs ───────
+  DBG.log('Phase 4: init complete');
+  const loader = document.getElementById('initLoader');
+  if (loader) loader.remove();
+
+  _applyAuthUI();
+  parseAndNavigate();
+  DBG.log('=== App ready ===');
+});
+
+/* ══════════════════════════════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════════════════════════════ */
+function renderHome() {
+  const totalVideos   = COURSES.reduce((s, c) => s + (c.chapters || []).reduce((ss, ch) => ss + (ch.videos || []).length, 0), 0);
+  const totalChapters = COURSES.reduce((s, c) => s + (c.chapters || []).length, 0);
+  const el1 = document.getElementById('hStat1'); if (el1) el1.textContent = totalVideos;
+  const el2 = document.getElementById('hStat2'); if (el2) el2.textContent = totalChapters;
+  const el3 = document.getElementById('hStat3'); if (el3) el3.textContent = COURSES.length;
+
+  const preview = document.getElementById('homeCoursesPreview');
+  if (!preview) return;
+  preview.innerHTML = COURSES.slice(0, 4).map(c => {
+    const id = cid(c);
+    const { pct } = getProgress(id);
+    const chapCount = (c.chapters || []).length;
+    const vidCount  = (c.chapters || []).reduce((s, ch) => s + (ch.videos || []).length, 0);
+    const icon = escHtml(c.icon || '📚');
+    const title = escHtml(c.title || '');
+    return `<div class="iv-row">
+      <div class="iv-ico">${icon}</div>
+      <div style="flex:1">
+        <div class="iv-t">${title}</div>
+        <div class="iv-s">${chapCount} فصل · ${vidCount} مقطع</div>
+      </div>
+      <div class="iv-badge">${pct}%</div>
+    </div>`;
+  }).join('') || '<div style="color:var(--muted);text-align:center;padding:20px">لا توجد مواد بعد</div>';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   COURSES PAGE
+══════════════════════════════════════════════════════════════ */
+function renderCourses(filter) {
+  // Build category filter tabs
+  const cats = [...new Set(COURSES.map(c => c.category || c.cat).filter(Boolean))];
+  const filterEl = document.getElementById('catFilter');
+  if (filterEl) {
+    filterEl.innerHTML =
+      `<button class="ftab ${!filter ? 'active' : ''}" onclick="renderCourses()">الكل</button>` +
+      cats.map(cat => {
+        const label = cat; // backend uses Arabic category names directly
+        return `<button class="ftab ${filter === cat ? 'active' : ''}" onclick="renderCourses('${escHtml(cat)}')">${escHtml(label)}</button>`;
+      }).join('');
+  }
+
+  const grid = document.getElementById('coursesGrid');
+  const filtered = filter
+    ? COURSES.filter(c => (c.category || c.cat) === filter)
+    : COURSES;
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div style="color:var(--muted);text-align:center;padding:60px;grid-column:1/-1">لا توجد مواد بعد</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(c => {
+    const id = cid(c);
+    const { pct, watched, total } = getProgress(id);
+    const chapCount = (c.chapters || []).length;
+    const icon  = escHtml(c.icon || '📚');
+    const title = escHtml(c.title || '');
+    const desc  = escHtml(c.description || c.desc || '');
+    const cat   = escHtml(c.category || c.catName || '');
+    // Map category to thumb class (backend uses Arabic, fallback to acc)
+    const thumbMap = { 'محاسبة': 'th-acc', 'تكاليف': 'th-cost', 'تدقيق': 'th-aud', 'ضرائب': 'th-tax' };
+    const thumbClass = thumbMap[c.category] || c.thumb || 'th-acc';
+    return `<div class="course-card" onclick="openCourse('${id}')">
+      <div class="cc-thumb ${thumbClass}">
+        ${c.thumbnail
+          ? `<img src="http://localhost:5000${escHtml(c.thumbnail)}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`
+          : icon}
+        <div class="cc-progress-bar"><div class="cc-progress-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-cat">${cat}</div>
+        <div class="cc-title">${title}</div>
+        <div class="cc-desc">${desc}</div>
+        <div class="cc-meta">
+          <div class="cc-info">📑 ${chapCount} فصل · 🎬 ${total} مقطع</div>
+          <div class="cc-pct">${pct > 0 ? pct + '% مكتمل' : 'ابدأ الآن'}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   COURSE VIEWER
+══════════════════════════════════════════════════════════════ */
+async function openCourse(id) {
+  // Find course in local cache first for instant render
+  curCourse = COURSES.find(c => cid(c) === id);
+
+  // If not found or need fresh data, fetch from backend
+  const res = await API.get(`/courses/${id}`);
+  if (res.ok && res.data?.course) {
+    curCourse = res.data.course;
+    // Merge progress from API response
+    if (res.data.progress) {
+      PROGRESS[id] = {};
+      (res.data.progress.watchedVideos || []).forEach(vid => { PROGRESS[id][vid] = true; });
+    }
+    // Refresh local COURSES array
+    const idx = COURSES.findIndex(c => cid(c) === id);
+    if (idx >= 0) COURSES[idx] = curCourse; else COURSES.push(curCourse);
+  }
+
+  if (!curCourse) { _showSaveToast('❌ تعذر تحميل الدورة', true); return; }
+
+  // Also load progress if logged in and not already loaded
+  if (currentUser && !PROGRESS[id]) await loadProgress(id);
+
+  curVideo = null; curChapterIdx = 0; curVideoIdx = 0;
+
+  document.getElementById('cvCourseName').textContent = curCourse.title || '';
+  const chapCount = (curCourse.chapters || []).length;
+  const vidCount  = (curCourse.chapters || []).reduce((s, ch) => s + (ch.videos || []).length, 0);
+  document.getElementById('cvCourseMeta').textContent = `${chapCount} فصل · ${vidCount} مقطع`;
+
+  renderChaptersList();
+  updateCourseProgress();
+  resetVideoPlayer();
+
+  history.replaceState(null, '', '#/course/' + cid(curCourse));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('course-view').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderChaptersList() {
+  const el = document.getElementById('chaptersList');
+  if (!el || !curCourse) return;
+  const courseId = cid(curCourse);
+
+  el.innerHTML = (curCourse.chapters || []).map((ch, ci) => {
+    const chId    = ch._id || ch.id || ci;
+    const watched = (ch.videos || []).filter(v => isWatched(courseId, v._id || v.id)).length;
+    const total   = (ch.videos || []).length;
+    return `<div class="chapter-item">
+      <div class="chapter-head" onclick="toggleChapter(${ci})">
+        <div class="ch-num">${ci + 1}</div>
+        <div class="ch-title">${escHtml(ch.title)}</div>
+        <div class="ch-prog">${watched}/${total}</div>
+        <div class="ch-arrow" id="arrow-${ci}">▶</div>
+      </div>
+      <div class="videos-list ${ci === 0 ? 'open' : ''}" id="videos-${ci}">
+        ${(ch.videos || []).map((v, vi) => {
+          const vid = v._id || v.id || vi;
+          const isW = isWatched(courseId, vid);
+          const isA = (curChapterIdx === ci && curVideoIdx === vi);
+          return `<div class="video-item ${isW ? 'watched' : ''} ${isA ? 'active' : ''}"
+               id="vi-${ci}-${vi}" onclick="playVideo(${ci}, ${vi})">
+            <div class="vi-check">${isW ? '✓' : '○'}</div>
+            <div class="vi-ico">${getTypeIcon(v.type)}</div>
+            <div class="vi-title">${escHtml(v.title)}</div>
+            <div class="vi-dur">${escHtml(v.duration || v.dur || '')}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('') || '<div style="padding:20px;color:var(--muted);text-align:center;font-size:13px">لا توجد فصول</div>';
+
+  // open first chapter arrow
+  const a = document.getElementById('arrow-0');
+  if (a) a.classList.add('open');
+}
+
+function toggleChapter(ci) {
+  const vl = document.getElementById(`videos-${ci}`);
+  const ar = document.getElementById(`arrow-${ci}`);
+  if (!vl) return;
+  const isOpen = vl.classList.contains('open');
+  vl.classList.toggle('open', !isOpen);
+  if (ar) ar.classList.toggle('open', !isOpen);
+}
+
+function getTypeIcon(type) {
+  return { video: '🎬', pdf: '📄', link: '🔗', audio: '🎵' }[type] || '🎬';
+}
+
+function playVideo(ci, vi) {
+  curChapterIdx = ci; curVideoIdx = vi;
+  const ch = (curCourse.chapters || [])[ci]; if (!ch) return;
+  curVideo = (ch.videos || [])[vi]; if (!curVideo) return;
+
+  const src = curVideo.url || curVideo.src || '';
+
+  // Update active states in sidebar
+  document.querySelectorAll('.video-item').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById(`vi-${ci}-${vi}`);
+  if (el) el.classList.add('active');
+
+  // Render player
+  const wrap = document.getElementById('videoPlayerWrap');
+  if (src) {
+    const isYoutube = src.includes('youtu.be/') || src.includes('youtube.com/watch') || src.includes('youtube.com/embed');
+    const isVimeo   = src.includes('vimeo.com');
+    const isHttp    = src.startsWith('http');
+
+    if (curVideo.type === 'video' || src.endsWith('.mp4')) {
+      wrap.innerHTML = `<video controls src="${src}" style="width:100%;height:100%"></video>`;
+    } else if (curVideo.type === 'audio') {
+      wrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a1e28"><audio controls src="${src}" style="width:85%;max-width:480px"></audio></div>`;
+    } else if (curVideo.type === 'pdf') {
+      wrap.innerHTML = `<iframe src="${src}" style="width:100%;height:100%;background:#fff;border:none;display:block"></iframe>`;
+    } else if (isYoutube) {
+      let embed = src;
+      if (src.includes('youtu.be/'))    embed = 'https://www.youtube.com/embed/' + src.split('youtu.be/')[1].split('?')[0];
+      else if (src.includes('watch?v=')) embed = src.replace('watch?v=', 'embed/');
+      wrap.innerHTML = `<iframe src="${embed}" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" style="width:100%;height:100%;border:none;display:block"></iframe>`;
+    } else if (isVimeo) {
+      const vid = src.split('/').pop();
+      wrap.innerHTML = `<iframe src="https://player.vimeo.com/video/${vid}" allowfullscreen style="width:100%;height:100%;border:none;display:block"></iframe>`;
+    } else if (curVideo.type === 'link' || isHttp) {
+      wrap.innerHTML = `<div class="no-video"><div class="ico">🔗</div><a href="${src}" target="_blank" rel="noopener" style="color:var(--teal3);text-decoration:none;font-size:15px;padding:12px 28px;border:1.5px solid var(--teal2);border-radius:12px">فتح الرابط في تبويب جديد ↗</a></div>`;
+    } else {
+      wrap.innerHTML = `<div class="no-video"><div class="ico">${getTypeIcon(curVideo.type)}</div><div style="font-size:14px;color:var(--muted)">لا يمكن عرض هذا المقطع تلقائياً</div></div>`;
+    }
+  } else {
+    wrap.innerHTML = `<div class="no-video"><div class="ico">${getTypeIcon(curVideo.type)}</div><div style="font-size:14px;color:var(--muted)">لم يُرفع مقطع بعد لهذا الدرس</div></div>`;
+  }
+
+  // Info panel
+  const info = document.getElementById('videoInfo');
+  info.style.display = 'block';
+  document.getElementById('viTitle').textContent   = curVideo.title || '';
+  document.getElementById('viChapter').textContent = '📑 ' + (ch.title || '');
+  document.getElementById('viDur').textContent     = curVideo.duration || curVideo.dur ? '⏱ ' + (curVideo.duration || curVideo.dur) : '';
+  document.getElementById('viType').textContent    = getTypeIcon(curVideo.type) + ' ' + ({ video: 'فيديو', pdf: 'PDF', link: 'رابط', audio: 'صوت' }[curVideo.type] || 'مقطع');
+  document.getElementById('viDesc').textContent    = curVideo.description || curVideo.desc || '';
+
+  const courseId = cid(curCourse);
+  const videoId  = curVideo._id || curVideo.id;
+  const w = isWatched(courseId, videoId);
+  const wb = document.getElementById('watchedBtn');
+  wb.textContent = w ? '✓ تمّت المشاهدة' : '○ اضغط عند الانتهاء';
+  wb.className   = 'watched-btn' + (w ? ' done' : '');
+
+  // Nav buttons
+  const lastCh = (curCourse.chapters || []).length - 1;
+  const lastVi = ((curCourse.chapters || [])[lastCh]?.videos || []).length - 1;
+  document.getElementById('prevVidBtn').disabled = (ci === 0 && vi === 0);
+  document.getElementById('nextVidBtn').disabled = (ci === lastCh && vi === lastVi);
+}
+
+function navigateVideo(dir) {
+  const ch = (curCourse.chapters || [])[curChapterIdx];
+  let ni = curVideoIdx + dir, nci = curChapterIdx;
+  if (ni < 0) { nci--; if (nci < 0) return; ni = ((curCourse.chapters || [])[nci]?.videos || []).length - 1; }
+  else if (ni >= (ch?.videos || []).length) { nci++; if (nci >= (curCourse.chapters || []).length) return; ni = 0; }
+  const vl = document.getElementById(`videos-${nci}`); if (vl) vl.classList.add('open');
+  const ar = document.getElementById(`arrow-${nci}`);  if (ar) ar.classList.add('open');
+  playVideo(nci, ni);
+}
+
+async function toggleWatched() {
+  if (!curVideo || !curCourse) return;
+  const courseId = cid(curCourse);
+  const videoId  = curVideo._id || curVideo.id;
+  const w = isWatched(courseId, videoId);
+
+  await markWatched(courseId, videoId, !w);
+
+  const wb = document.getElementById('watchedBtn');
+  wb.textContent = !w ? '✓ تمّت المشاهدة' : '○ اضغط عند الانتهاء';
+  wb.className   = 'watched-btn' + (!w ? ' done' : '');
+
+  const el = document.getElementById(`vi-${curChapterIdx}-${curVideoIdx}`);
+  if (el) {
+    el.classList.toggle('watched', !w);
+    const check = el.querySelector('.vi-check');
+    if (check) check.textContent = !w ? '✓' : '○';
+  }
+  updateCourseProgress();
+  renderChaptersList();
+  setTimeout(() => {
+    const a = document.getElementById(`vi-${curChapterIdx}-${curVideoIdx}`);
+    if (a) a.classList.add('active');
+  }, 10);
+}
+
+function updateCourseProgress() {
+  const { pct, watched, total } = getProgress(cid(curCourse));
+  document.getElementById('cvProgPct').textContent   = pct + '%';
+  document.getElementById('cvProgFill').style.width  = pct + '%';
+  document.getElementById('cvCourseMeta').textContent = `${watched}/${total} مقطع مكتمل`;
+}
+
+function resetVideoPlayer() {
+  document.getElementById('videoPlayerWrap').innerHTML = '<div class="no-video"><div class="ico">🎬</div><div>اختر مقطعاً من القائمة</div></div>';
+  document.getElementById('videoInfo').style.display = 'none';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   QUIZZES PAGE
+══════════════════════════════════════════════════════════════ */
+function renderQuizzes() {
+  const grid = document.getElementById('quizGrid');
+  if (!grid) return;
+  grid.innerHTML = QUIZZES.map(q => {
+    const id   = qid(q);
+    const diff = q.difficulty || q.diff || 'متوسط';
+    // Map Arabic difficulty to CSS class
+    const diffClassMap = { 'سهل': 'd-easy', 'متوسط': 'd-med', 'صعب': 'd-hard', easy: 'd-easy', med: 'd-med', hard: 'd-hard' };
+    const diffClass = diffClassMap[diff] || 'd-med';
+    const diffLabel = { 'سهل': 'سهل', 'متوسط': 'متوسط', 'صعب': 'صعب', easy: 'سهل', med: 'متوسط', hard: 'صعب' }[diff] || 'متوسط';
+    const qs = q.questions || q.qs || [];
+    return `<div class="q-card">
+      <div class="qc-top">
+        <div class="qc-ico">${escHtml(q.icon || '📝')}</div>
+        <div class="diff ${diffClass}">${escHtml(diffLabel)}</div>
+      </div>
+      <div class="qc-t">${escHtml(q.title)}</div>
+      <div class="qc-d">${escHtml(q.description || q.desc || '')}</div>
+      <div class="qc-meta">
+        <span>❓ ${qs.length} سؤال</span>
+        <span>⏱ ${q.timeLimit || q.time || 10} دقائق</span>
+      </div>
+      <div class="qc-footer">
+        <span style="font-size:12px;color:var(--muted)">اختبار تفاعلي</span>
+        <button class="start-btn" onclick="startQuiz('${id}')">ابدأ الآن ←</button>
+      </div>
+    </div>`;
+  }).join('') || '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted)">لا توجد اختبارات</div>';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   QUIZ ENGINE
+══════════════════════════════════════════════════════════════ */
+async function startQuiz(id) {
+  // Fetch full quiz (students only see questions, not correct answers yet)
+  const res = await API.get(`/quizzes/${id}`);
+  if (!res.ok || !res.data) { _showSaveToast('❌ تعذر تحميل الاختبار', true); return; }
+  curQuiz = res.data;
+
+  const qs = curQuiz.questions || curQuiz.qs || [];
+  if (!qs.length) { _showSaveToast('❌ هذا الاختبار لا يحتوي على أسئلة', true); return; }
+
+  curQ = 0; curScore = 0; answered = false;
+  quizAnswers = new Array(qs.length).fill(null); // initialise answer tracker
+
+  document.getElementById('qTitle').textContent = curQuiz.title || '';
+  document.getElementById('quizOverlay').classList.add('show');
+  renderQ();
+}
+
+function renderQ() {
+  const qs = curQuiz.questions || curQuiz.qs || [];
+  const q  = qs[curQ];
+  const t  = qs.length;
+  document.getElementById('qProg').textContent = `السؤال ${curQ + 1} من ${t}`;
+  document.getElementById('qSc').textContent   = `النقاط: ${curScore}`;
+  document.getElementById('qBar').style.width  = `${curQ / t * 100}%`;
+  answered = false;
+
+  const opts = q.options || q.opts || [];
+  document.getElementById('qBody').innerHTML = `
+    <div class="q-text">${escHtml(q.question || q.q)}</div>
+    <div class="opts">${opts.map((o, i) =>
+      `<button class="opt-btn" onclick="pickOpt(${i})">${escHtml(o)}</button>`
+    ).join('')}</div>
+    <div id="qfb"></div>
+    <button class="next-btn" id="qnb" onclick="nextQ()">${curQ + 1 === t ? 'إنهاء ✓' : 'التالي ←'}</button>`;
+}
+
+function pickOpt(idx) {
+  if (answered) return;
+  answered = true;
+
+  const qs  = curQuiz.questions || curQuiz.qs || [];
+  const q   = qs[curQ];
+  const opts = q.options || q.opts || [];
+
+  // Record the user's answer
+  quizAnswers[curQ] = idx;
+
+  // Check correctness — backend hides correctAnswer for students.
+  // We store the answer and only know the result after submit.
+  // For immediate UX feedback: if backend included correctAnswer show it,
+  // otherwise show neutral "answer recorded" feedback.
+  const correctAnswer = q.correctAnswer !== undefined ? q.correctAnswer : q.c;
+
+  document.querySelectorAll('.opt-btn')[idx].classList.add(
+    correctAnswer !== undefined ? (idx === correctAnswer ? 'correct' : 'wrong') : 'correct'
+  );
+  if (correctAnswer !== undefined && idx !== correctAnswer) {
+    const correctBtn = document.querySelectorAll('.opt-btn')[correctAnswer];
+    if (correctBtn) correctBtn.classList.add('correct');
+    const fb = document.getElementById('qfb');
+    fb.className = 'feedback err';
+    fb.textContent = `❌ خطأ. الإجابة: ${escHtml(opts[correctAnswer])}. ${escHtml(q.explanation || q.e || '')}`;
+  } else if (correctAnswer !== undefined) {
+    curScore++;
+    const fb = document.getElementById('qfb');
+    fb.className = 'feedback ok';
+    fb.textContent = `✅ صحيح! ${escHtml(q.explanation || q.e || '')}`;
+  } else {
+    // Backend hidden mode — just acknowledge
+    const fb = document.getElementById('qfb');
+    fb.className = 'feedback ok';
+    fb.textContent = '✅ تم تسجيل إجابتك';
+  }
+
+  document.getElementById('qnb').classList.add('show');
+}
+
+function nextQ() {
+  curQ++;
+  const qs = curQuiz.questions || curQuiz.qs || [];
+  if (curQ >= qs.length) showResult(); else renderQ();
+}
+
+async function showResult() {
+  const qs  = curQuiz.questions || curQuiz.qs || [];
+  const t   = qs.length;
+
+  // Submit answers to backend for official grading
+  let serverScore = null;
+  let serverResults = null;
+  if (currentUser) {
+    await API.refreshCsrf();
+    const submitRes = await API.post(`/quizzes/${qid(curQuiz)}/submit`, { answers: quizAnswers });
+    if (submitRes.ok && submitRes.data) {
+      serverScore   = submitRes.data.score;   // 0-100 percentage
+      serverResults = submitRes.data.results;
+      curScore      = submitRes.data.correct;
+    }
+  }
+
+  const pct = serverScore !== null ? serverScore : Math.round(curScore / t * 100);
+  document.getElementById('qBar').style.width = '100%';
+  document.getElementById('qBody').innerHTML = `
+    <div class="result-box">
+      <div class="res-score">${curScore}/${t}</div>
+      <div class="res-label">نسبة النجاح: ${pct}%</div>
+      <div class="res-msg">${pct >= 80 ? '🏆 ممتاز!' : pct >= 60 ? '👍 جيد! مع مزيد من المراجعة ستصل للامتياز.' : '📚 تحتاج مزيداً من المراجعة.'}</div>
+      <button class="btn-main" style="margin-top:24px;width:100%;justify-content:center" onclick="closeQuiz()">إغلاق</button>
+    </div>`;
+}
+
+function closeQuiz() {
+  document.getElementById('quizOverlay').classList.remove('show');
+  calcExprStr = ''; calcCurrent = '0'; calcOperator = null; calcPrev = null; calcFreshInput = false;
+  const dv = document.getElementById('calcVal'); if (dv) dv.textContent = '0';
+  const de = document.getElementById('calcExpr'); if (de) de.textContent = '';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ADMIN — Dashboard
+══════════════════════════════════════════════════════════════ */
+function renderAdmin() {
+  if (!isAdmin) {
+    document.getElementById('adminLock').style.display = 'flex';
+    document.getElementById('adminContent').classList.remove('on');
+    return;
+  }
+  document.getElementById('adminLock').style.display = 'none';
+  document.getElementById('adminContent').classList.add('on');
+  updateAdminStats();
+  renderAdminCourseList();
+  renderAdminQuizList();
+  renderAdminCollections();
+}
+
+async function updateAdminStats() {
+  // Use backend stats endpoint
+  const res = await API.get('/admin/stats');
+  if (res.ok && res.data) {
+    const el1 = document.getElementById('aStat1'); if (el1) el1.textContent = res.data.totalCourses || 0;
+    const el4 = document.getElementById('aStat4'); if (el4) el4.textContent = res.data.totalQuizzes || 0;
+    const el5 = document.getElementById('aStat5'); if (el5) el5.textContent = COLL_FILES.length;
+  }
+  // Calculate chapters and videos from local COURSES
+  const totalCh  = COURSES.reduce((s, c) => s + (c.chapters || []).length, 0);
+  const totalVid = COURSES.reduce((s, c) => s + (c.chapters || []).reduce((ss, ch) => ss + (ch.videos || []).length, 0), 0);
+  const el2 = document.getElementById('aStat2'); if (el2) el2.textContent = totalCh;
+  const el3 = document.getElementById('aStat3'); if (el3) el3.textContent = totalVid;
+}
+
+function switchAdminTab(id, el) {
+  document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.atab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('active');
+}
+
+/* ─── Course list ─── */
+function renderAdminCourseList() {
+  const el = document.getElementById('adminCourseList');
+  if (!el) return;
+  el.innerHTML = COURSES.map(c => `
+    <div class="cli-item ${selectedCourse && cid(selectedCourse) === cid(c) ? 'active' : ''}" onclick="selectAdminCourse('${cid(c)}')">
+      <div class="cli-ico">${escHtml(c.icon || '📚')}</div>
+      <div class="cli-info">
+        <div class="cli-title">${escHtml(c.title)}</div>
+        <div class="cli-sub">${(c.chapters || []).length} فصل</div>
+      </div>
+      <button class="cli-del" onclick="event.stopPropagation();deleteCourse('${cid(c)}')">🗑</button>
+    </div>`).join('') || '<div style="padding:20px;color:var(--muted);font-size:13px;text-align:center">لا توجد مواد</div>';
+}
+
+async function selectAdminCourse(id) {
+  // Fetch full course details (including chapters/videos) for editor
+  const res = await API.get(`/courses/${id}`);
+  if (res.ok && res.data?.course) {
+    selectedCourse = res.data.course;
+    // Sync into COURSES array
+    const idx = COURSES.findIndex(c => cid(c) === id);
+    if (idx >= 0) COURSES[idx] = selectedCourse;
+  } else {
+    selectedCourse = COURSES.find(c => cid(c) === id);
+  }
+  renderAdminCourseList();
+  renderCourseEditor();
+}
+
+function renderCourseEditor() {
+  const el = document.getElementById('courseEditor');
+  if (!selectedCourse) {
+    el.innerHTML = '<div class="ce-empty"><div class="ce-ico">👈</div><div>اختر مادة</div></div>';
+    return;
+  }
+  el.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div>
+        <div style="font-size:16px;font-weight:700">${escHtml(selectedCourse.icon || '📚')} ${escHtml(selectedCourse.title)}</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px">${escHtml(selectedCourse.category || selectedCourse.catName || '')}</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="cb-btn" onclick="openEditCourseModal()">✏️ تعديل</button>
+        <button class="add-btn" onclick="openChapterModal()">+ فصل جديد</button>
+      </div>
+    </div>
+    <div class="chapter-manager" id="chapterManager"></div>`;
+  renderChapterManager();
+}
+
+function renderChapterManager() {
+  const el = document.getElementById('chapterManager');
+  if (!el || !selectedCourse) return;
+  el.innerHTML = (selectedCourse.chapters || []).map((ch, ci) => {
+    const chIdStr = ch._id || ch.id || '';
+    return `<div class="chapter-block">
+      <div class="cb-head">
+        <div class="cb-num">${ci + 1}</div>
+        <div class="cb-title">${escHtml(ch.title)}</div>
+        <div class="cb-actions">
+          <button class="cb-btn" onclick="openEditChapterModal('${chIdStr}')">✏️</button>
+          <button class="cb-btn" onclick="openAddVideoModal('${chIdStr}')">+ مقطع</button>
+          <button class="cb-btn danger" onclick="deleteChapter('${chIdStr}')">🗑</button>
+        </div>
+      </div>
+      <div class="videos-manager">
+        ${(ch.videos || []).map(v => {
+          const vIdStr = v._id || v.id || '';
+          return `<div class="vm-item">
+            <div class="vm-ico">${getTypeIcon(v.type)}</div>
+            <div class="vm-info">
+              <div class="vm-t">${escHtml(v.title)}</div>
+              <div class="vm-s">${escHtml(v.duration || v.dur || '')} ${v.url || v.src ? '· ✓ رابط' : '· لم يُضف بعد'}</div>
+            </div>
+            <button class="cb-btn" style="padding:4px 10px;font-size:11px" onclick="openEditVideoModal('${chIdStr}','${vIdStr}')">✏️</button>
+            <button class="vm-del" onclick="deleteVideo('${chIdStr}','${vIdStr}')">🗑</button>
+          </div>`;
+        }).join('')}
+        <button class="add-video-btn" onclick="openAddVideoModal('${chIdStr}')">+ إضافة مقطع</button>
+      </div>
+    </div>`;
+  }).join('') || '<div style="color:var(--muted);font-size:13px;text-align:center;padding:20px">لا توجد فصول — أضف فصلاً أولاً</div>';
+}
+
+/* ─── Course CRUD (backend) ─── */
+function openCourseModal(existing) {
+  const isEdit = !!existing;
+  showGenericModal(`
+    <div class="modal-form">
+      <div class="qm-top"><div class="mf-title">${isEdit ? 'تعديل المادة' : 'إضافة مادة جديدة'}</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">اسم المادة</label><input class="fi" id="mf1" value="${isEdit ? escHtml(existing.title) : ''}" placeholder="مثال: المحاسبة المالية"></div>
+      <div class="fg"><label class="fl">وصف مختصر</label><textarea class="fi-ta" id="mf2" placeholder="وصف مختصر للمادة">${isEdit ? escHtml(existing.description || existing.desc || '') : ''}</textarea></div>
+      <div class="fg"><label class="fl">القسم</label>
+        <select class="fi" id="mf3">
+          <option value="محاسبة" ${!isEdit || existing.category === 'محاسبة' ? 'selected' : ''}>محاسبة مالية</option>
+          <option value="تكاليف" ${isEdit && existing.category === 'تكاليف' ? 'selected' : ''}>محاسبة تكاليف</option>
+          <option value="تدقيق"  ${isEdit && existing.category === 'تدقيق'  ? 'selected' : ''}>مراجعة وتدقيق</option>
+          <option value="ضرائب"  ${isEdit && existing.category === 'ضرائب'  ? 'selected' : ''}>ضرائب ومالية</option>
+          <option value="مالية"  ${isEdit && existing.category === 'مالية'  ? 'selected' : ''}>مالية</option>
+          <option value="أخرى"   ${isEdit && existing.category === 'أخرى'   ? 'selected' : ''}>أخرى</option>
+        </select></div>
+      <div class="fg"><label class="fl">الأيقونة (emoji)</label><input class="fi" id="mf4" value="${isEdit ? escHtml(existing.icon || '📚') : '📚'}" placeholder="📚"></div>
+      <div class="fg"><label class="fl">الصورة المصغرة (اختياري)</label><input class="fi" id="mf5thumb" type="file" accept="image/*"></div>
+      <div class="fg" style="display:flex;align-items:center;gap:10px">
+        <input type="checkbox" id="mf6pub" ${isEdit && existing.isPublished ? 'checked' : ''}>
+        <label class="fl" style="margin:0;cursor:pointer" for="mf6pub">نشر الدورة (مرئية للطلاب)</label>
+      </div>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" id="courseSaveBtn" onclick="saveCourse('${isEdit ? cid(existing) : ''}')">${isEdit ? 'حفظ التعديلات' : 'إضافة المادة'}</button>
+      </div>
+    </div>`);
+}
+
+function openEditCourseModal() { openCourseModal(selectedCourse); }
+
+async function saveCourse(existingId) {
+  const title = document.getElementById('mf1').value.trim();
+  if (!title) return;
+
+  const btn = document.getElementById('courseSaveBtn');
+  btn.disabled = true; btn.textContent = 'جارٍ الحفظ...';
+
+  const formData = new FormData();
+  formData.append('title',       title);
+  formData.append('description', document.getElementById('mf2').value);
+  formData.append('category',    document.getElementById('mf3').value);
+  formData.append('icon',        document.getElementById('mf4').value || '📚');
+  formData.append('isPublished', document.getElementById('mf6pub').checked ? 'true' : 'false');
+  const thumbFile = document.getElementById('mf5thumb')?.files[0];
+  if (thumbFile) formData.append('thumbnail', thumbFile);
+
+  await API.refreshCsrf();
+  let res;
+  if (existingId) {
+    res = await API.upload('PUT', `/courses/${existingId}`, formData);
+  } else {
+    res = await API.upload('POST', '/courses', formData);
+  }
+
+  btn.disabled = false; btn.textContent = existingId ? 'حفظ التعديلات' : 'إضافة المادة';
+
+  if (res.ok && res.data) {
+    const updated = res.data;
+    if (existingId) {
+      const idx = COURSES.findIndex(c => cid(c) === existingId);
+      if (idx >= 0) COURSES[idx] = updated;
+      if (selectedCourse && cid(selectedCourse) === existingId) selectedCourse = updated;
+    } else {
+      COURSES.push(updated);
+    }
+    closeGeneric();
+    renderAdminCourseList();
+    renderCourseEditor();
+    updateAdminStats();
+    renderHome();
+    _showSaveToast('✅ تم حفظ المادة');
+  } else {
+    _showSaveToast('❌ ' + escHtml(res.message || 'خطأ في الحفظ'), true);
+  }
+}
+
+async function deleteCourse(id) {
+  if (!confirm('حذف هذه المادة وجميع فصولها ومقاطعها؟')) return;
+  await API.refreshCsrf();
+  const res = await API.delete(`/courses/${id}`);
+  if (res.ok) {
+    COURSES = COURSES.filter(c => cid(c) !== id);
+    if (selectedCourse && cid(selectedCourse) === id) { selectedCourse = null; }
+    renderAdminCourseList();
+    renderCourseEditor();
+    updateAdminStats();
+    renderHome();
+    _showSaveToast('✅ تم حذف المادة');
+  } else {
+    _showSaveToast('❌ ' + escHtml(res.message || 'خطأ في الحذف'), true);
+  }
+}
+
+/* ─── Chapter CRUD ─── */
+function openChapterModal(existing) {
+  const isEdit = !!existing;
+  showGenericModal(`
+    <div class="modal-form">
+      <div class="qm-top"><div class="mf-title">${isEdit ? 'تعديل الفصل' : 'فصل جديد'}</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">عنوان الفصل</label><input class="fi" id="mf1" value="${isEdit ? escHtml(existing.title) : ''}" placeholder="مثال: الفصل الأول: المقدمة"></div>
+      <div class="fg"><label class="fl">وصف (اختياري)</label><textarea class="fi-ta" id="mf2" placeholder="وصف مختصر للفصل">${isEdit ? escHtml(existing.description || '') : ''}</textarea></div>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" id="chapSaveBtn" onclick="saveChapter('${isEdit ? (existing._id || existing.id) : ''}')">${isEdit ? 'حفظ التعديلات' : 'إضافة الفصل'}</button>
+      </div>
+    </div>`);
+}
+
+function openEditChapterModal(chId) {
+  if (!selectedCourse) return;
+  const ch = (selectedCourse.chapters || []).find(c => (c._id || c.id) === chId);
+  if (ch) openChapterModal(ch);
+}
+
+async function saveChapter(existingChId) {
+  const title = document.getElementById('mf1').value.trim();
+  if (!title || !selectedCourse) return;
+  const courseId = cid(selectedCourse);
+
+  const btn = document.getElementById('chapSaveBtn');
+  btn.disabled = true; btn.textContent = 'جارٍ الحفظ...';
+
+  await API.refreshCsrf();
+  let res;
+  if (existingChId) {
+    res = await API.put(`/courses/${courseId}/chapters/${existingChId}`, {
+      title, description: document.getElementById('mf2').value
+    });
+  } else {
+    res = await API.post(`/courses/${courseId}/chapters`, {
+      title, description: document.getElementById('mf2').value
+    });
+  }
+
+  btn.disabled = false; btn.textContent = existingChId ? 'حفظ التعديلات' : 'إضافة الفصل';
+
+  if (res.ok) {
+    // Refresh course data
+    const courseRes = await API.get(`/courses/${courseId}`);
+    if (courseRes.ok && courseRes.data?.course) {
+      selectedCourse = courseRes.data.course;
+      const idx = COURSES.findIndex(c => cid(c) === courseId);
+      if (idx >= 0) COURSES[idx] = selectedCourse;
+    }
+    closeGeneric();
+    renderCourseEditor();
+    updateAdminStats();
+    _showSaveToast('✅ تم حفظ الفصل');
+  } else {
+    _showSaveToast('❌ ' + escHtml(res.message || 'خطأ'), true);
+  }
+}
+
+async function deleteChapter(chId) {
+  if (!confirm('حذف هذا الفصل وجميع مقاطعه؟') || !selectedCourse) return;
+  const courseId = cid(selectedCourse);
+  await API.refreshCsrf();
+  const res = await API.delete(`/courses/${courseId}/chapters/${chId}`);
+  if (res.ok) {
+    const courseRes = await API.get(`/courses/${courseId}`);
+    if (courseRes.ok && courseRes.data?.course) {
+      selectedCourse = courseRes.data.course;
+      const idx = COURSES.findIndex(c => cid(c) === courseId);
+      if (idx >= 0) COURSES[idx] = selectedCourse;
+    }
+    renderCourseEditor();
+    updateAdminStats();
+    _showSaveToast('✅ تم حذف الفصل');
+  } else {
+    _showSaveToast('❌ ' + escHtml(res.message || 'خطأ'), true);
+  }
+}
+
+/* ─── Video CRUD ─── */
+function openAddVideoModal(chId) {
+  addVideoMode = 'url';
+  showGenericModal(`
+    <div class="modal-form wide">
+      <div class="qm-top"><div class="mf-title">إضافة مقطع جديد</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">عنوان المقطع</label><input class="fi" id="mf1" placeholder="مثال: شرح القيد المزدوج"></div>
+      <div class="fg"><label class="fl">وصف (اختياري)</label><textarea class="fi-ta" id="mf2" placeholder="وصف مختصر"></textarea></div>
+      <div class="fg"><label class="fl">المدة (مثال: 12:34)</label><input class="fi" id="mf3" placeholder="12:34"></div>
+      <div class="fg"><label class="fl">نوع المقطع</label>
+        <select class="fi" id="mf4">
+          <option value="video">🎬 فيديو</option>
+          <option value="pdf">📄 PDF</option>
+          <option value="link">🔗 رابط</option>
+          <option value="audio">🎵 صوت</option>
+        </select></div>
+      <div class="fg"><label class="fl">رابط المقطع</label><input class="fi" id="mf5url" placeholder="https://..."></div>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" id="vidSaveBtn" onclick="saveVideo('${chId}','')">إضافة المقطع</button>
+      </div>
+    </div>`);
+}
+
+function openEditVideoModal(chId, vId) {
+  if (!selectedCourse) return;
+  const ch = (selectedCourse.chapters || []).find(c => (c._id || c.id) === chId);
+  if (!ch) return;
+  const v = (ch.videos || []).find(x => (x._id || x.id) === vId);
+  if (!v) return;
+  showGenericModal(`
+    <div class="modal-form wide">
+      <div class="qm-top"><div class="mf-title">تعديل المقطع</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">عنوان المقطع</label><input class="fi" id="mf1" value="${escHtml(v.title)}" placeholder="عنوان المقطع"></div>
+      <div class="fg"><label class="fl">وصف (اختياري)</label><textarea class="fi-ta" id="mf2">${escHtml(v.description || v.desc || '')}</textarea></div>
+      <div class="fg"><label class="fl">المدة (مثال: 12:34)</label><input class="fi" id="mf3" value="${escHtml(v.duration || v.dur || '')}" placeholder="12:34"></div>
+      <div class="fg"><label class="fl">نوع المقطع</label>
+        <select class="fi" id="mf4">
+          <option value="video"  ${v.type === 'video'  ? 'selected' : ''}>🎬 فيديو</option>
+          <option value="pdf"    ${v.type === 'pdf'    ? 'selected' : ''}>📄 PDF</option>
+          <option value="link"   ${v.type === 'link'   ? 'selected' : ''}>🔗 رابط</option>
+          <option value="audio"  ${v.type === 'audio'  ? 'selected' : ''}>🎵 صوت</option>
+        </select></div>
+      <div class="fg"><label class="fl">رابط المقطع</label><input class="fi" id="mf5url" value="${escHtml(v.url || v.src || '')}" placeholder="https://..."></div>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" id="vidSaveBtn" onclick="saveVideo('${chId}','${vId}')">حفظ التعديلات</button>
+      </div>
+    </div>`);
+}
+
+async function saveVideo(chId, existingVId) {
+  const title = document.getElementById('mf1').value.trim();
+  if (!title || !selectedCourse) return;
+  const courseId = cid(selectedCourse);
+
+  const body = {
+    title,
+    description: document.getElementById('mf2').value,
+    duration:    document.getElementById('mf3').value,
+    type:        document.getElementById('mf4').value,
+    url:         document.getElementById('mf5url').value.trim(),
+  };
+
+  if (!body.url) { _showSaveToast('❌ يرجى إدخال رابط المقطع', true); return; }
+
+  const btn = document.getElementById('vidSaveBtn');
+  btn.disabled = true; btn.textContent = 'جارٍ الحفظ...';
+
+  await API.refreshCsrf();
+  let res;
+  if (existingVId) {
+    res = await API.put(`/courses/${courseId}/chapters/${chId}/videos/${existingVId}`, body);
+  } else {
+    res = await API.post(`/courses/${courseId}/chapters/${chId}/videos`, body);
+  }
+
+  btn.disabled = false; btn.textContent = existingVId ? 'حفظ التعديلات' : 'إضافة المقطع';
+
+  if (res.ok) {
+    const courseRes = await API.get(`/courses/${courseId}`);
+    if (courseRes.ok && courseRes.data?.course) {
+      selectedCourse = courseRes.data.course;
+      const idx = COURSES.findIndex(c => cid(c) === courseId);
+      if (idx >= 0) COURSES[idx] = selectedCourse;
+    }
+    closeGeneric();
+    renderChapterManager();
+    updateAdminStats();
+    renderHome();
+    _showSaveToast('✅ تم حفظ المقطع');
+  } else {
+    const errs = res.errors ? res.errors.map(e => e.message).join(', ') : res.message;
+    _showSaveToast('❌ ' + escHtml(errs || 'خطأ في الحفظ'), true);
+  }
+}
+
+async function deleteVideo(chId, vId) {
+  if (!confirm('حذف هذا المقطع؟') || !selectedCourse) return;
+  const courseId = cid(selectedCourse);
+  await API.refreshCsrf();
+  const res = await API.delete(`/courses/${courseId}/chapters/${chId}/videos/${vId}`);
+  if (res.ok) {
+    const courseRes = await API.get(`/courses/${courseId}`);
+    if (courseRes.ok && courseRes.data?.course) {
+      selectedCourse = courseRes.data.course;
+      const idx = COURSES.findIndex(c => cid(c) === courseId);
+      if (idx >= 0) COURSES[idx] = selectedCourse;
+    }
+    renderChapterManager();
+    updateAdminStats();
+    renderHome();
+    _showSaveToast('✅ تم حذف المقطع');
+  } else {
+    _showSaveToast('❌ ' + escHtml(res.message || 'خطأ'), true);
+  }
+}
+
+/* ─── Quiz Admin (backend) ─── */
+function renderAdminQuizList() {
+  const el = document.getElementById('adminQuizList');
+  if (!el) return;
+  el.innerHTML = QUIZZES.map(q => {
+    const id    = qid(q);
+    const diff  = q.difficulty || q.diff || 'متوسط';
+    const qs    = q.questions || q.qs || [];
+    const diffLabel = { 'سهل': 'سهل', 'متوسط': 'متوسط', 'صعب': 'صعب', easy: 'سهل', med: 'متوسط', hard: 'صعب' }[diff] || 'متوسط';
+    return `<div class="qa-item">
+      <div class="qa-ico">${escHtml(q.icon || '📝')}</div>
+      <div class="qa-info">
+        <div class="qa-t">${escHtml(q.title)}</div>
+        <div class="qa-s">${qs.length} سؤال · صعوبة: ${escHtml(diffLabel)}</div>
+      </div>
+      <button class="cb-btn" onclick="openEditQuizModal('${id}')">✏️ تعديل</button>
+      <button class="qa-del" onclick="deleteQuiz('${id}')">🗑</button>
+    </div>`;
+  }).join('') || '<div style="color:var(--muted);text-align:center;padding:40px">لا توجد اختبارات</div>';
+}
+
+async function openEditQuizModal(id) {
+  // Fetch quiz WITH answers for admin editing
+  const res = await API.get(`/quizzes/${id}/answers`);
+  if (res.ok && res.data) openQuizModal(res.data);
+  else openQuizModal(QUIZZES.find(q => qid(q) === id));
+}
+
+function openQuizModal(existing) {
+  const isEdit = !!existing;
+  const qs = isEdit ? (existing.questions || existing.qs || []) : [];
+  showGenericModal(`
+    <div class="modal-form wide">
+      <div class="qm-top"><div class="mf-title">${isEdit ? 'تعديل الاختبار' : 'اختبار جديد'}</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">عنوان الاختبار</label><input class="fi" id="qmf1" value="${isEdit ? escHtml(existing.title) : ''}" placeholder="عنوان الاختبار"></div>
+      <div class="fg"><label class="fl">وصف</label><input class="fi" id="qmf2" value="${isEdit ? escHtml(existing.description || existing.desc || '') : ''}" placeholder="وصف مختصر"></div>
+      <div class="fg"><label class="fl">الصعوبة</label>
+        <select class="fi" id="qmf3">
+          <option value="سهل"   ${!isEdit || (existing.difficulty || existing.diff) === 'سهل'   ? 'selected' : ''}>سهل</option>
+          <option value="متوسط" ${isEdit && (existing.difficulty || existing.diff) === 'متوسط' ? 'selected' : ''}>متوسط</option>
+          <option value="صعب"   ${isEdit && (existing.difficulty || existing.diff) === 'صعب'   ? 'selected' : ''}>صعب</option>
+        </select></div>
+      <div class="fg"><label class="fl">الوقت (دقائق)</label><input class="fi" id="qmf4" type="number" value="${isEdit ? (existing.timeLimit || existing.time || 10) : 10}" min="1"></div>
+      <div class="fg" style="display:flex;align-items:center;gap:10px">
+        <input type="checkbox" id="qmf5pub" ${isEdit && existing.isPublished ? 'checked' : ''}>
+        <label class="fl" style="margin:0;cursor:pointer" for="qmf5pub">نشر الاختبار</label>
+      </div>
+      <div class="section-title-sm" style="margin-top:8px">الأسئلة</div>
+      <div id="qBuilder">${qs.map((q, i) => buildQHTML(q, i)).join('')}</div>
+      <button class="add-video-btn" style="margin-top:8px" onclick="addQBlock()">+ إضافة سؤال</button>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" id="quizSaveBtn" onclick="saveQuiz('${isEdit ? qid(existing) : ''}')">${isEdit ? 'حفظ' : 'إضافة الاختبار'}</button>
+      </div>
+    </div>`, true);
+}
+
+function buildQHTML(q, i) {
+  const opts = q ? (q.options || q.opts || ['', '', '', '']) : ['', '', '', ''];
+  const correctAnswer = q ? (q.correctAnswer !== undefined ? q.correctAnswer : (q.c !== undefined ? q.c : 0)) : 0;
+  return `<div class="chapter-block" id="qblock-${i}" style="margin-bottom:10px;padding:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="font-size:13px;font-weight:600;color:var(--teal3)">سؤال ${i + 1}</div>
+      <button class="cb-btn danger" onclick="removeQBlock(${i})" style="padding:3px 10px;font-size:11px">حذف</button>
+    </div>
+    <div class="fg" style="margin-bottom:10px"><input class="fi" id="qq-${i}" value="${q ? escHtml(q.question || q.q || '') : ''}" placeholder="نص السؤال"></div>
+    ${[0, 1, 2, 3].map(oi => `
+    <div class="fg" style="margin-bottom:8px;display:flex;align-items:center;gap:8px">
+      <input type="radio" name="correct-${i}" value="${oi}" ${correctAnswer === oi ? 'checked' : ''} style="accent-color:var(--teal3)">
+      <input class="fi" id="qo-${i}-${oi}" value="${q ? escHtml(opts[oi] || '') : ''}" placeholder="الخيار ${oi + 1}" style="flex:1">
+    </div>`).join('')}
+    <div class="fg" style="margin-bottom:0"><input class="fi" id="qe-${i}" value="${q ? escHtml(q.explanation || q.e || '') : ''}" placeholder="شرح الإجابة الصحيحة (اختياري)"></div>
+  </div>`;
+}
+
+function addQBlock() {
+  const qb = document.getElementById('qBuilder'); if (!qb) return;
+  const i = qb.children.length;
+  const div = document.createElement('div');
+  div.innerHTML = buildQHTML(null, i);
+  qb.appendChild(div.firstElementChild);
+}
+
+function removeQBlock(i) {
+  const el = document.getElementById(`qblock-${i}`); if (el) el.remove();
+}
+
+async function saveQuiz(existingId) {
+  const title = document.getElementById('qmf1').value.trim();
+  if (!title) return;
+
+  const qb = document.getElementById('qBuilder'); if (!qb) return;
+  const questions = [];
+  qb.querySelectorAll('[id^="qq-"]').forEach(el => {
+    const i = el.id.split('-')[1];
+    const q = el.value.trim(); if (!q) return;
+    const options = [0, 1, 2, 3].map(oi => document.getElementById(`qo-${i}-${oi}`)?.value || '');
+    const cEl = document.querySelector(`input[name="correct-${i}"]:checked`);
+    const correctAnswer = cEl ? parseInt(cEl.value) : 0;
+    const explanation = document.getElementById(`qe-${i}`)?.value || '';
+    questions.push({ question: q, options, correctAnswer, explanation });
+  });
+
+  const body = {
+    title,
+    description: document.getElementById('qmf2').value,
+    difficulty:  document.getElementById('qmf3').value,
+    timeLimit:   parseInt(document.getElementById('qmf4').value) || 10,
+    isPublished: document.getElementById('qmf5pub').checked,
+    questions,
+  };
+
+  const btn = document.getElementById('quizSaveBtn');
+  btn.disabled = true; btn.textContent = 'جارٍ الحفظ...';
+
+  await API.refreshCsrf();
+  const res = existingId
+    ? await API.put(`/quizzes/${existingId}`, body)
+    : await API.post('/quizzes', body);
+
+  btn.disabled = false; btn.textContent = existingId ? 'حفظ' : 'إضافة الاختبار';
+
+  if (res.ok && res.data) {
+    if (existingId) {
+      const idx = QUIZZES.findIndex(q => qid(q) === existingId);
+      if (idx >= 0) QUIZZES[idx] = res.data;
+    } else {
+      QUIZZES.push(res.data);
+    }
+    closeGeneric();
+    renderAdminQuizList();
+    renderQuizzes();
+    updateAdminStats();
+    _showSaveToast('✅ تم حفظ الاختبار');
+  } else {
+    const errs = res.errors ? res.errors.map(e => e.message).join(', ') : res.message;
+    _showSaveToast('❌ ' + escHtml(errs || 'خطأ في الحفظ'), true);
+  }
+}
+
+async function deleteQuiz(id) {
+  if (!confirm('حذف هذا الاختبار؟')) return;
+  await API.refreshCsrf();
+  const res = await API.delete(`/quizzes/${id}`);
+  if (res.ok) {
+    QUIZZES = QUIZZES.filter(q => qid(q) !== id);
+    renderAdminQuizList();
+    renderQuizzes();
+    updateAdminStats();
+    _showSaveToast('✅ تم حذف الاختبار');
+  } else {
+    _showSaveToast('❌ ' + escHtml(res.message || 'خطأ'), true);
+  }
+}
+
+/* ─── Generic modal helpers ─── */
+function showGenericModal(html) {
+  document.getElementById('genericModalContent').innerHTML = html;
+  document.getElementById('genericOverlay').classList.add('show');
+}
+function closeGeneric() {
+  document.getElementById('genericOverlay').classList.remove('show');
+  pendingFileData = '';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CALCULATOR — unchanged
+══════════════════════════════════════════════════════════════ */
+let calcExprStr  = '';
+let calcCurrent  = '0';
+let calcOperator = null;
+let calcPrev     = null;
+let calcFreshInput = false;
+
+function calcAction(type, val) {
+  const dispVal  = document.getElementById('calcVal');
+  const dispExpr = document.getElementById('calcExpr');
+  if (type === 'AC') {
+    calcExprStr = ''; calcCurrent = '0'; calcOperator = null; calcPrev = null; calcFreshInput = false;
+  } else if (type === 'back') {
+    calcCurrent = calcCurrent.length > 1 ? calcCurrent.slice(0, -1) : '0';
+  } else if (type === 'num') {
+    if (calcFreshInput || calcCurrent === '0') { calcCurrent = val; calcFreshInput = false; }
+    else if (calcCurrent.length < 12) calcCurrent += val;
+  } else if (type === 'dot') {
+    if (calcFreshInput) { calcCurrent = '0.'; calcFreshInput = false; return; }
+    if (!calcCurrent.includes('.')) calcCurrent += '.';
+  } else if (type === 'op') {
+    if (calcOperator && !calcFreshInput) calcCurrent = String(calcCompute(parseFloat(calcPrev), parseFloat(calcCurrent), calcOperator));
+    calcPrev = calcCurrent; calcOperator = val; calcExprStr = calcCurrent + ' ' + val; calcFreshInput = true;
+  } else if (type === 'eq') {
+    if (calcOperator && calcPrev !== null) {
+      const result = calcCompute(parseFloat(calcPrev), parseFloat(calcCurrent), calcOperator);
+      calcExprStr = calcPrev + ' ' + calcOperator + ' ' + calcCurrent + ' =';
+      calcCurrent = String(result); calcOperator = null; calcPrev = null; calcFreshInput = true;
+    }
+  }
+  let shown = calcCurrent;
+  if (shown.length > 10) shown = parseFloat(parseFloat(shown).toPrecision(8)).toString();
+  dispVal.textContent  = shown;
+  dispExpr.textContent = calcExprStr;
+}
+
+function calcCompute(a, b, op) {
+  let r;
+  if (op === '+') r = a + b;
+  else if (op === '−') r = a - b;
+  else if (op === '×') r = a * b;
+  else if (op === '÷') r = b !== 0 ? a / b : 'خطأ';
+  else r = b;
+  if (typeof r === 'number') r = Math.round(r * 1e10) / 1e10;
+  return r;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   COLLECTIONS — kept localStorage-based (not in backend scope)
+══════════════════════════════════════════════════════════════ */
+function renderCollections(filterSubj) {
+  const search    = (document.getElementById('collSearch')?.value || '').trim().toLowerCase();
+  const filterEl  = document.getElementById('collFilter');
+  if (filterEl) {
+    filterEl.innerHTML =
+      `<button class="ftab ${!filterSubj ? 'active' : ''}" onclick="renderCollections()">الكل</button>` +
+      COLL_SUBJECTS.map(s =>
+        `<button class="ftab ${filterSubj === s.id ? 'active' : ''}" onclick="renderCollections('${s.id}')">${escHtml(s.icon)} ${escHtml(s.name)}</button>`
+      ).join('');
+  }
+  const body = document.getElementById('collBody');
+  if (!body) return;
+  let subjects = filterSubj ? COLL_SUBJECTS.filter(s => s.id === filterSubj) : COLL_SUBJECTS;
+  if (!subjects.length) {
+    body.innerHTML = `<div class="coll-empty"><div class="coll-empty-ico">📂</div><div style="font-size:16px;font-weight:700;margin-bottom:8px">لا توجد تجميعات بعد</div><div style="font-size:14px;color:var(--muted)">يمكن للمشرف إضافة مقررات وملفات من لوحة التحكم</div></div>`;
+    return;
+  }
+  let html = ''; let totalRendered = 0;
+  subjects.forEach(subj => {
+    let files = COLL_FILES.filter(f => f.subjId === subj.id);
+    if (search) files = files.filter(f => f.title.toLowerCase().includes(search) || subj.name.toLowerCase().includes(search));
+    if (!files.length && search) return;
+    totalRendered++;
+    html += `<div class="coll-subject">
+      <div class="coll-subject-header">
+        <div class="coll-subj-icon ${subj.thumb || 'th-other'}">${escHtml(subj.icon)}</div>
+        <div class="coll-subj-info"><div class="coll-subj-name">${escHtml(subj.name)}</div><div class="coll-subj-count">${files.length} ملف</div></div>
+      </div>
+      <div class="coll-items-grid">
+        ${files.length ? files.map(f => {
+          let thumbSrc = f.src || '';
+          if (thumbSrc.startsWith('__local__')) thumbSrc = localStorage.getItem(thumbSrc.replace('__local__', '')) || '';
+          return `<div class="coll-item" onclick="openFilePreview('${f.id}')">
+            <div class="coll-item-thumb type-${f.type}">
+              ${f.type === 'image' && thumbSrc && !thumbSrc.startsWith('data:application') ? `<img src="${thumbSrc}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">` : (f.type === 'pdf' ? '📄' : f.type === 'image' ? '🖼️' : '🔗')}
+              <div class="coll-type-badge">${{ pdf: 'PDF', image: 'صورة', link: 'رابط' }[f.type] || f.type}</div>
+            </div>
+            <div class="coll-item-body">
+              <div class="coll-item-type">${{ pdf: 'مستند PDF', image: 'صورة شرح', link: 'رابط خارجي' }[f.type] || f.type}</div>
+              <div class="coll-item-title">${escHtml(f.title)}</div>
+              ${f.note ? `<div class="coll-item-meta">${escHtml(f.note)}</div>` : ''}
+            </div>
+          </div>`;
+        }).join('') : `<div style="color:var(--muted);font-size:13px;padding:20px;grid-column:1/-1">لا توجد ملفات في هذا المقرر بعد</div>`}
+      </div>
+    </div>`;
+  });
+  body.innerHTML = totalRendered ? html : `<div class="coll-empty"><div class="coll-empty-ico">🔍</div><div style="font-size:16px;font-weight:700;margin-bottom:8px">لا توجد نتائج</div><div style="font-size:14px;color:var(--muted)">جرّب كلمة بحث أخرى</div></div>`;
+}
+
+function openFilePreview(fileId) {
+  const f = COLL_FILES.find(x => x.id === fileId); if (!f) return;
+  const subj = COLL_SUBJECTS.find(s => s.id === f.subjId);
+  document.getElementById('fpTitle').textContent = f.title;
+  document.getElementById('fpSubj').textContent  = subj ? subj.name : '';
+  const body = document.getElementById('fpBody');
+  const dl   = document.getElementById('fpDownload');
+  let resolvedSrc = f.src || '';
+  if (resolvedSrc.startsWith('__local__')) resolvedSrc = localStorage.getItem(resolvedSrc.replace('__local__', '')) || '';
+  dl.href = resolvedSrc || '#';
+  if (!resolvedSrc) {
+    body.innerHTML = `<div class="fp-no-preview"><div class="ico">📂</div><div>لم يُرفع مصدر لهذا الملف</div></div>`;
+  } else if (f.type === 'pdf') {
+    body.innerHTML = `<iframe src="${resolvedSrc}" style="width:100%;height:480px;background:#fff;border:none;display:block"></iframe>`;
+  } else if (f.type === 'image') {
+    body.innerHTML = `<img src="${resolvedSrc}" style="max-height:480px;margin:auto;display:block;object-fit:contain;">`;
+  } else {
+    body.innerHTML = `<div class="fp-no-preview"><div class="ico">🔗</div><a href="${resolvedSrc}" target="_blank" style="color:var(--teal3);font-size:15px">فتح الرابط في تبويب جديد ↗</a></div>`;
+  }
+  document.getElementById('filePreviewOverlay').classList.add('show');
+}
+
+function closeFilePreview() {
+  document.getElementById('filePreviewOverlay').classList.remove('show');
+  document.getElementById('fpBody').innerHTML = '';
+}
+
+/* ── Admin: Collections ── */
+function renderAdminCollections() { renderAdminCollSubjList(); renderCollFilesPanel(); }
+function renderAdminCollSubjList() {
+  const el = document.getElementById('adminCollSubjList'); if (!el) return;
+  el.innerHTML = COLL_SUBJECTS.map(s => `
+    <div class="csi-item ${selectedCollSubj?.id === s.id ? 'active' : ''}" onclick="selectCollSubj('${s.id}')">
+      <div style="font-size:20px;flex-shrink:0">${escHtml(s.icon)}</div>
+      <div style="flex:1;min-width:0"><div class="cli-title">${escHtml(s.name)}</div><div class="cli-sub">${COLL_FILES.filter(f => f.subjId === s.id).length} ملف</div></div>
+      <button class="csi-del" onclick="event.stopPropagation();deleteCollSubject('${s.id}')">🗑</button>
+    </div>`).join('') || '<div style="padding:20px;color:var(--muted);font-size:13px;text-align:center">لا توجد مقررات</div>';
+}
+function selectCollSubj(id) { selectedCollSubj = COLL_SUBJECTS.find(s => s.id === id); renderAdminCollSubjList(); renderCollFilesPanel(); }
+function renderCollFilesPanel() {
+  const el = document.getElementById('collFilesPanel'); if (!el) return;
+  if (!selectedCollSubj) { el.innerHTML = '<div class="ce-empty"><div class="ce-ico">👈</div><div>اختر مقرراً لإدارة ملفاته</div></div>'; return; }
+  const files = COLL_FILES.filter(f => f.subjId === selectedCollSubj.id);
+  el.innerHTML = `
+    <div class="cfp-head">
+      <div>
+        <div style="font-size:16px;font-weight:700">${escHtml(selectedCollSubj.icon)} ${escHtml(selectedCollSubj.name)}</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px">${files.length} ملف</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="cb-btn" onclick="openEditCollSubjModal()">✏️ تعديل المقرر</button>
+        <button class="add-btn" onclick="openAddCollFileModal()">+ رفع ملف</button>
+      </div>
+    </div>
+    <div class="coll-file-list" id="collFileList">
+      ${files.map(f => `
+        <div class="cfi-item">
+          <div class="cfi-ico">${{ pdf: '📄', image: '🖼️', link: '🔗' }[f.type] || '📎'}</div>
+          <div class="cfi-info">
+            <div class="cfi-title">${escHtml(f.title)}</div>
+            <div class="cfi-meta">${{ pdf: 'PDF', image: 'صورة', link: 'رابط' }[f.type] || f.type}${f.note ? ' · ' + escHtml(f.note) : ''} ${f.src ? '· ✓ مرفوع' : '· لم يُرفع بعد'}</div>
+          </div>
+          <button class="cb-btn" style="padding:4px 10px;font-size:11px" onclick="openEditCollFileModal('${f.id}')">✏️</button>
+          <button class="cfi-del" onclick="deleteCollFile('${f.id}')">🗑</button>
+        </div>`).join('') || '<div style="color:var(--muted);font-size:13px;text-align:center;padding:30px">لا توجد ملفات — أضف ملفاً أولاً</div>'}
+    </div>`;
+}
+function openCollSubjectModal(existing) {
+  const isEdit = !!existing;
+  showGenericModal(`
+    <div class="modal-form">
+      <div class="qm-top"><div class="mf-title">${isEdit ? 'تعديل المقرر' : 'إضافة مقرر جديد'}</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">اسم المقرر</label><input class="fi" id="csmf1" value="${isEdit ? escHtml(existing.name) : ''}" placeholder="مثال: محاسبة متوسطة"></div>
+      <div class="fg"><label class="fl">الأيقونة (emoji)</label><input class="fi" id="csmf2" value="${isEdit ? escHtml(existing.icon) : '📚'}" placeholder="📚"></div>
+      <div class="fg"><label class="fl">اللون / التصنيف</label>
+        <select class="fi" id="csmf3">
+          <option value="th-acc"   ${!isEdit || existing.thumb === 'th-acc'   ? 'selected' : ''}>🔵 محاسبة مالية</option>
+          <option value="th-cost"  ${isEdit && existing.thumb === 'th-cost'  ? 'selected' : ''}>🟢 محاسبة تكاليف</option>
+          <option value="th-aud"   ${isEdit && existing.thumb === 'th-aud'   ? 'selected' : ''}>🟣 مراجعة وتدقيق</option>
+          <option value="th-tax"   ${isEdit && existing.thumb === 'th-tax'   ? 'selected' : ''}>🟡 ضرائب ومالية</option>
+          <option value="th-other" ${isEdit && existing.thumb === 'th-other' ? 'selected' : ''}>⚪ أخرى</option>
+        </select></div>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" onclick="saveCollSubject('${isEdit ? existing.id : 'null'}')">${isEdit ? 'حفظ التعديلات' : 'إضافة المقرر'}</button>
+      </div>
+    </div>`);
+}
+function openEditCollSubjModal() { openCollSubjectModal(selectedCollSubj); }
+function saveCollSubject(existingId) {
+  const name = document.getElementById('csmf1').value.trim(); if (!name) return;
+  const icon = document.getElementById('csmf2').value || '📚';
+  const thumb = document.getElementById('csmf3').value;
+  const realId = existingId === 'null' ? null : existingId;
+  if (realId) {
+    const s = COLL_SUBJECTS.find(x => x.id === realId);
+    if (s) { s.name = name; s.icon = icon; s.thumb = thumb; }
+    if (selectedCollSubj?.id === realId) selectedCollSubj = s;
+  } else {
+    COLL_SUBJECTS.push({ id: 'cs' + Date.now(), name, icon, thumb });
+  }
+  save('zkCollSubjects', COLL_SUBJECTS);
+  closeGeneric(); renderAdminCollSubjList(); renderCollFilesPanel(); renderCollections();
+}
+function deleteCollSubject(id) {
+  if (!confirm('حذف هذا المقرر وجميع ملفاته؟')) return;
+  COLL_SUBJECTS = COLL_SUBJECTS.filter(s => s.id !== id);
+  COLL_FILES    = COLL_FILES.filter(f => f.subjId !== id);
+  save('zkCollSubjects', COLL_SUBJECTS); save('zkCollFiles', COLL_FILES);
+  if (selectedCollSubj?.id === id) selectedCollSubj = null;
+  renderAdminCollSubjList(); renderCollFilesPanel(); renderCollections();
+}
+function openAddCollFileModal(existing) {
+  if (!selectedCollSubj) return;
+  const isEdit = !!existing;
+  pendingCollFileData = '';
+  showGenericModal(`
+    <div class="modal-form wide">
+      <div class="qm-top"><div class="mf-title">${isEdit ? 'تعديل الملف' : 'رفع ملف جديد'}</div><button class="close-btn" onclick="closeGeneric()">✕</button></div>
+      <div class="fg"><label class="fl">عنوان الملف</label><input class="fi" id="cfmf1" value="${isEdit ? escHtml(existing.title) : ''}" placeholder="مثال: تجميع محاسبة متوسطة الفصل الأول"></div>
+      <div class="fg"><label class="fl">ملاحظة (اختياري)</label><input class="fi" id="cfmf2" value="${isEdit ? escHtml(existing.note || '') : ''}" placeholder="مثال: 1445 الفصل الأول"></div>
+      <div class="fg"><label class="fl">نوع الملف</label>
+        <select class="fi" id="cfmf3" onchange="updateCollFileSrcUI()">
+          <option value="pdf"   ${!isEdit || existing.type === 'pdf'   ? 'selected' : ''}>📄 PDF</option>
+          <option value="image" ${isEdit && existing.type === 'image' ? 'selected' : ''}>🖼️ صورة</option>
+          <option value="link"  ${isEdit && existing.type === 'link'  ? 'selected' : ''}>🔗 رابط خارجي</option>
+        </select></div>
+      <div class="fg">
+        <label class="fl">المصدر</label>
+        <div class="url-toggle">
+          <button class="utbtn active" id="collModeUrl" onclick="setCollFileMode('url')">🔗 رابط URL</button>
+          <button class="utbtn" id="collModeFile" onclick="setCollFileMode('file')">📤 رفع ملف</button>
+        </div>
+        <div id="collSrcUrl"><input class="fi" id="cfmf4url" value="${isEdit && existing.src && !existing.src.startsWith('data:') ? escHtml(existing.src) : ''}" placeholder="https://..."></div>
+        <div id="collSrcFile" style="display:none">
+          <div class="file-drop">
+            <input type="file" id="cfmf4file" accept="application/pdf,image/*" onchange="handleCollFileSelect()">
+            <div class="fd-ico">📤</div>
+            <div class="fd-txt">اسحب ملف PDF أو صورة هنا أو <strong>اضغط للاختيار</strong></div>
+            <div class="fd-selected" id="collFdSelected">${isEdit && existing.src && existing.src.startsWith('data:') ? '✓ ملف مرفوع مسبقاً' : ''}</div>
+          </div>
+        </div>
+      </div>
+      <div class="mf-actions">
+        <button class="mf-cancel" onclick="closeGeneric()">إلغاء</button>
+        <button class="mf-save" onclick="saveCollFile('${isEdit ? existing.id : 'null'}')">${isEdit ? 'حفظ التعديلات' : 'رفع الملف'}</button>
+      </div>
+    </div>`);
+}
+function openEditCollFileModal(fileId) { const f = COLL_FILES.find(x => x.id === fileId); if (f) openAddCollFileModal(f); }
+function setCollFileMode(mode) {
+  document.getElementById('collModeUrl').className  = 'utbtn' + (mode === 'url'  ? ' active' : '');
+  document.getElementById('collModeFile').className = 'utbtn' + (mode === 'file' ? ' active' : '');
+  document.getElementById('collSrcUrl').style.display  = mode === 'url'  ? 'block' : 'none';
+  document.getElementById('collSrcFile').style.display = mode === 'file' ? 'block' : 'none';
+}
+function handleCollFileSelect() {
+  const f = document.getElementById('cfmf4file')?.files[0]; if (!f) return;
+  document.getElementById('collFdSelected').textContent = 'جارٍ التحميل...';
+  const reader = new FileReader();
+  reader.onload = e => { pendingCollFileData = e.target.result; document.getElementById('collFdSelected').textContent = '✓ ' + f.name; };
+  reader.readAsDataURL(f);
+}
+function saveCollFile(existingId) {
+  const title  = document.getElementById('cfmf1').value.trim(); if (!title || !selectedCollSubj) return;
+  const note   = document.getElementById('cfmf2').value.trim();
+  const type   = document.getElementById('cfmf3').value;
+  const urlVal = document.getElementById('cfmf4url')?.value?.trim() || '';
+  let src = urlVal || pendingCollFileData || '';
+  pendingCollFileData = '';
+  let storedSrc = src;
+  if (src && src.startsWith('data:') && src.length > 500000) {
+    const fileKey = 'zkFile_' + (existingId !== 'null' ? existingId : ('cf' + Date.now()));
+    try { localStorage.setItem(fileKey, src); } catch(e) {}
+    storedSrc = '__local__' + fileKey;
+  }
+  const realId = existingId === 'null' ? null : existingId;
+  if (realId) {
+    const f = COLL_FILES.find(x => x.id === realId);
+    if (f) { f.title = title; f.note = note; f.type = type; if (src) f.src = storedSrc; }
+  } else {
+    const newId = 'cf' + Date.now();
+    if (storedSrc.startsWith('__local__')) {
+      const oldKey = storedSrc.replace('__local__', '');
+      const fileData = localStorage.getItem(oldKey);
+      if (fileData) { localStorage.removeItem(oldKey); localStorage.setItem('zkFile_' + newId, fileData); }
+      storedSrc = '__local__zkFile_' + newId;
+    }
+    COLL_FILES.push({ id: newId, subjId: selectedCollSubj.id, title, note, type, src: storedSrc });
+  }
+  save('zkCollFiles', COLL_FILES);
+  closeGeneric(); renderCollFilesPanel(); renderAdminCollSubjList(); renderCollections();
+}
+function deleteCollFile(fileId) {
+  if (!confirm('حذف هذا الملف؟')) return;
+  const f = COLL_FILES.find(x => x.id === fileId);
+  if (f?.src?.startsWith('__local__')) { try { localStorage.removeItem(f.src.replace('__local__', '')); } catch(e) {} }
+  COLL_FILES = COLL_FILES.filter(x => x.id !== fileId);
+  save('zkCollFiles', COLL_FILES);
+  renderCollFilesPanel(); renderAdminCollSubjList(); renderCollections();
+}
+function updateCollFileSrcUI() { /* type change hook */ }
+
+/* ══════════════════════════════════════════════════════════════
+   KEYBOARD SHORTCUTS
+══════════════════════════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('lp') === document.activeElement) doLogin();
+  if (e.key === 'Escape') { closeGeneric(); closeQuiz(); }
+});
+</script>
+
+</body>
+</html>
